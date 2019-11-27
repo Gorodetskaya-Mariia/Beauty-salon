@@ -1,0 +1,41 @@
+.wrapper.wrapper--home {
+  padding-top: 200px;
+  background: url("/images/background.jpg") no-repeat;
+}
+
+.ant-carousel {
+  width: 38%;
+}
+
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 360px !important;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.ant-carousel .slick-slide img {
+  margin: 20px auto;
+  height: 200px;
+}
+
+.ant-carousel .slick-dots li button {
+  background-color: #ff7875 !important;
+}
+
+.ant-carousel .slick-slide h3 {
+  font-size: 18px;
+}
+
+@media (max-width: 560px) {
+  .wrapper.wrapper--home {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .ant-carousel {
+    width: 78%;
+  }
+}

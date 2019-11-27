@@ -1,0 +1,49 @@
+.account__card {
+  width: 350px;
+}
+
+.account__card:first-of-type {
+  margin-right: 30px;
+}
+
+.account__card-row p {
+  margin-bottom: 0;
+}
+
+.account__card-row p:first-of-type {
+  font-weight: 700;
+}
+
+.account__card-row,
+.account__card-item {
+  margin-bottom: 10px;
+}
+
+.account__card-item strong {
+  margin-right: 20px;
+}
+
+@media (max-width: 1100px) {
+  .account__card-wrapper {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .account__card:first-of-type {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .account__card {
+    width: 300px;
+  }
+
+  .account__card .form__field,
+  .account__card form,
+  .account__card .form__field input,
+  .account__card .form__button {
+    width: 230px;
+  }
+}

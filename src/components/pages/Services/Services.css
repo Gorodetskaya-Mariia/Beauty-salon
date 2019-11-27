@@ -1,0 +1,10 @@
+.services__image {
+  width: 200px;
+  height: 215px;
+  margin: 30px;
+}
+
+.services__image--men {
+	width: 180px;
+  height: 248px;
+}

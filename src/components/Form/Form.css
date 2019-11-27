@@ -1,0 +1,92 @@
+.container--form {
+  padding-top: 60px;
+}
+
+.container--form p {
+  margin: 0 auto;
+  text-align: center;
+  color: red;
+}
+
+.container--form .form__info {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+}
+
+.error {
+  color: red;
+}
+
+.form__field .error > input {
+  border-color: red;
+}
+
+form {
+  width: 280px;
+  margin: 0 auto;
+}
+
+.form__field {
+  width: 280px;
+  margin: 20px auto;
+}
+
+.form__field--text,
+.form__field select,
+.form__field input {
+  width: 280px;
+  height: 35px;
+  padding: 5px 10px;
+  border: 1px solid #e8e8e8;
+}
+
+.form__field label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.form__field-select {
+  padding-top: 10px;
+}
+
+.form__button {
+  display: block;
+  width: 280px;
+  height: 40px;
+  font-size: 16px;
+  margin: 0 auto 15px auto;
+  background-color: #ff7875;
+  border: 1px solid #ff7875;
+  border-radius: 4px;
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+  cursor: pointer;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.form__button:hover,
+.form__button:focus {
+  opacity: 0.7;
+}
+
+@media (max-width: 1100px) {
+  form,
+  .form__field,
+  .form__field--text,
+  .form__field select,
+	.form__field input,
+	.form__button {
+    width: 300px;
+	}
+
+	.container--form {
+		padding-bottom: 60px;
+	}
+}

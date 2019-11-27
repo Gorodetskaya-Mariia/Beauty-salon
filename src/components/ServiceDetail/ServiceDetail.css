@@ -1,0 +1,79 @@
+.service__image {
+  width: 250px;
+  margin-right: 30px;
+}
+
+.service__description {
+  padding-top: 20px;
+  width: 70%;
+  margin: 0 auto 30px auto;
+  text-align: center;
+  font-size: 17px;
+}
+
+.service__list {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.service__item {
+  font-size: 15px;
+  width: 60%;
+  margin: 0 auto 15px auto;
+}
+
+.service__name {
+  width: 35%;
+  font-weight: 700;
+  margin: 0 30px 0 0;
+}
+
+.service__price {
+  margin-bottom: 0;
+}
+
+.service__buttons--book {
+  margin-right: 10px;
+}
+
+.service__buttons {
+  margin-left: auto;
+}
+
+.service__info {
+  font-size: 15px;
+}
+
+.service__info span {
+  color: #ff7875;
+  cursor: pointer;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.service__info span:hover {
+  opacity: 0.6;
+}
+
+.service__icon {
+  margin-right: 10px;
+}
+
+@media (max-width: 1100px) {
+  .wrapper .services__container {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .service__item {
+    width: 80%;
+  }
+}
+
+@media (max-width: 560px) {
+  .service__item {
+    width: 100%;
+  }
+}
