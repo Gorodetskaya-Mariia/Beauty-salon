@@ -3,10 +3,10 @@ import { reducer as formReducer } from "redux-form";
 import servicesReducer from "./servicesReducer";
 import accountReducer from "./accountReducer";
 import userDataReducer from "./userDataReducer";
-import auth from "./auth";
+import authReducer from "./authReducer";
 
 export default combineReducers({
-  auth: auth,
+  auth: authReducer,
   services: servicesReducer,
 	form: formReducer,
 	userData: userDataReducer,

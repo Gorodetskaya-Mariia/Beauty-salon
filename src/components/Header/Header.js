@@ -6,18 +6,14 @@ import "./Header.css";
 
 const { SubMenu } = Menu;
 
-class Header extends React.Component {
+export class Header extends React.Component {
   state = {
-    currentPath: "home"
+    currentPath: ""
   };
 
   componentDidMount() {
-    this.setState({ currentPath: this.getLocation() });
+    this.setState({ currentPath: "home" });
   }
-
-  getLocation = () => {
-    return window.location.pathname;
-  };
 
   handleClick = e => {
     this.setState({

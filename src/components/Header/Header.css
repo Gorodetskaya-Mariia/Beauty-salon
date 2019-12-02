@@ -11,10 +11,24 @@ header.container {
 	}
 }
 
-.ant-menu.ant-menu-horizontal {
+.ant-menu.ant-menu-horizontal,
+.ant-menu-horizontal > .ant-menu-submenu,
+.ant-menu.ant-menu-horizontal > .ant-menu-item > a,
+.nav__item > a {
+  padding: 0 10px;
   border-bottom: 2px solid transparent;
   color: #ffffff;
   background-color: #000000;
+  border-right: 0;
+}
+
+.nav__item {  
+  margin-right: 30px;
+}
+
+.nav__item > a {
+  height: 40px;
+  line-height: 40px;
 }
 
 .ant-menu.ant-menu-horizontal > .ant-menu-item > a {
@@ -25,7 +39,10 @@ header.container {
 .ant-menu.ant-menu-horizontal > .ant-menu-item:hover,
 .ant-menu-horizontal > .ant-menu-submenu:hover,
 .ant-menu-horizontal > .ant-menu-submenu-open,
-.ant-menu-horizontal > .ant-menu-submenu-selected {
+.ant-menu-horizontal > .ant-menu-submenu-selected
+/* .nav__item > a:hover,
+.nav__item > a.active  */
+{
   border-bottom: 2px solid #fc9898 !important;
 }
 
@@ -37,7 +54,10 @@ header.container {
 .ant-menu-item > a:hover,
 .ant-menu-horizontal > .ant-menu-submenu-selected,
 .ant-menu-item-selected > a,
-.ant-menu-item-selected > a:hover {
+.ant-menu-item-selected > a:hover
+/* .nav__item > a:hover,
+.nav__item > a.active  */
+{
   color: #fc9898 !important;
 }
 
