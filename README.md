@@ -10,10 +10,15 @@ The application contains several pages: "Home", "Services", "Login" - a page for
 	* BEM methodology
 	* CSS Flex Layout
 	* Responsive Web Design approach
+	* Test Runner: Jest, Testing Utilities: Enzyme
 
 ## You can use commands bellow to run project:
 	* npm install
 	* npm start
+
+## For testing:
+	* npm install --save jest enzyme-adapter-react-16 react-test-renderer
+  * documentation - https://jestjs.io/docs/en
 
 ### Project overview:
 
@@ -25,4 +30,5 @@ The application contains several pages: "Home", "Services", "Login" - a page for
 - Redux Thunk has been used for writing async action creators.
 - Redux Form. Individual validators for each field have been used to provide synchronous client-side validation to the form. If the value is valid, the validation function returns undefined. If the value is invalid, the validation function returns an error. This is a string, which displays to user immediately.
 - Responsive Web Design has been achieved through flexboxes and media expressions.
-- The application is cross browser compatible with Chrome, Firefox, Edge. 
+- The application is cross browser compatible with Chrome, Firefox, Edge.
+- Tests have been written only for reducers. 
