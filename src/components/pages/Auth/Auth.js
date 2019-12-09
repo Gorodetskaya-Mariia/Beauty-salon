@@ -160,12 +160,33 @@ class Auth extends React.Component {
       );
     }
 
+    let message = null;
+    if (!isAuthenticated) {
+      message = (
+        <div className="form__info">
+          Please {isSignup ? "Sign up" : "Sign in"}
+        </div>
+      );
+    }
+
+    let messageToSwitch = null;
+    if (!isAuthenticated) {
+      messageToSwitch = (
+        <div className="form__info">
+          If you {isSignup ? "already HAVE an account please press button bellow " : "DO NOT have an account please press button bellow "}
+          and enter email and password.
+        </div>
+      );
+    }
+
     return (
       <div className="container--form">
         {authRedirect}
         {errorMessage}
+        {message}
         {form}
         {FormInfo}
+        {messageToSwitch}
         {buttonSwitch}
       </div>
     );
