@@ -72,7 +72,7 @@ class Form extends React.Component {
           name="username"
           type="text"
           component={this.renderField}
-          label="Username"
+          label="Your name"
 					validate={[required, minLength3, maxLength15, alpha]}
         />
         <Field
@@ -117,8 +117,7 @@ const mapStateToProps = state => {
     loading: state.userData.loading,
     token: state.auth.token,
 		userId: state.auth.userId,
-		userData: state.userData.userData,
-		userData: state.userData.update
+		userData: state.userData.userData
   };
 };
 

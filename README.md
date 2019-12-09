@@ -25,7 +25,7 @@ The application contains several pages: "Home", "Services", "Login" - a page for
 - Antd library allows to import ready components in the project. Components like navigation menu, buttons, cards and others have been imported for styling.
 - HTTP requests such as GET, POST, PUT and DELETE are done by Axios. Axios allows not only to intercept request and response and automatic transform JSON data, but also to handle errors from backend.
 - Firebase Realtime database has been used for storing data about services, appointments and personal information of clients. Authentication has been done by Firebase. Also, only authenticated users have access to appointments and personal information. This protection has been achieved by setting rules in Firebase.
-- Local Storage is used for storing token, id of a user and expiration time during one hour to allow the user use an application even after updating the application without login again.
+- Local Storage is used for storing token, id of a user and expiration time during one hour to allow the user use an application even after reloading or updating the application without login again.
 - Some pages like "Account", "Logout" and "Appointment" are not available for not authenticated users. These users will be redirected to "Home" page if they try to get access to the pages.  
 - Redux Thunk has been used for writing async action creators.
 - Redux Form. Individual validators for each field have been used to provide synchronous client-side validation to the form. If the value is valid, the validation function returns undefined. If the value is invalid, the validation function returns an error. This is a string, which displays to user immediately.

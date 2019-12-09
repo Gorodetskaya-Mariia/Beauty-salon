@@ -9,6 +9,7 @@
 }
 
 .container--form .form__info {
+  margin: 0 auto 15px auto;
   font-size: 16px;
   font-weight: 700;
   color: #000000;
@@ -71,9 +72,14 @@ form {
   transition: opacity 0.3s;
 }
 
-.form__button:hover,
-.form__button:focus {
+.form__button:hover {
   opacity: 0.7;
+}
+
+@media (min-width: 561px) {
+  .container--form .form__info {
+    width: 400px;
+  }
 }
 
 @media (max-width: 1100px) {
@@ -88,5 +94,5 @@ form {
 
 	.container--form {
 		padding-bottom: 60px;
-	}
+  }
 }
