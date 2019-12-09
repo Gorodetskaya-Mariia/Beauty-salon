@@ -1,3 +1,7 @@
+.services__container {
+	transition: all 0.3s ease-in;
+}
+
 .services__image {
   width: 200px;
   height: 215px;

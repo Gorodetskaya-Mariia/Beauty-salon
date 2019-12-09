@@ -30,7 +30,7 @@ class Home extends React.Component {
 						</Link>)
 					}
 				</div>
-				<Carousel dotPosition="bottom">
+				<Carousel dotPosition="bottom" autoplay="true">
           <div className="slide">
 					<img src="/images/stylist-1.jpg"></img>
             <h3>Anna</h3>
@@ -39,7 +39,7 @@ class Home extends React.Component {
           <div>
 					<img src="/images/stylist-2.png"></img>
             <h3>Whitney</h3>
-						<div>Makeup Artist, Facial Waxing Specialist</div>
+						<div>Makeup Artist,<br/> Facial Waxing Specialist</div>
           </div>
           <div>
 					<img src="/images/stylist-3.jpg"></img>

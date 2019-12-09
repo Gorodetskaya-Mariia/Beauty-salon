@@ -45,8 +45,8 @@ class Services extends React.Component {
   renderList() {
 		const { filteredServices, forWhom } = this.state;
 		const { loading } = this.props;
-		let content = (
-			filteredServices.map(item => (
+		let servicesList = (	
+				filteredServices.map(item => (
 				<Link
 					to={`${forWhom}/${item.toLowerCase()}`}
 					className="services__card"
@@ -58,6 +58,12 @@ class Services extends React.Component {
 			))
 		);
 
+		let content = (
+			<div className="d-flex space-between fadeIn">
+				{servicesList}
+				</div>
+		);
+	
 		if (loading) {
       content = <Spinner />;
     }
@@ -70,7 +76,6 @@ class Services extends React.Component {
     const { forWhom, filteredServices } = this.state;
 		let src = "";
 		let classAdd = "";
-
 		if(forWhom === "/services-for-women"){
 			src="images/services-women.png";
 			classAdd = "";
@@ -79,7 +84,7 @@ class Services extends React.Component {
 			src="images/services-men.png";
 		}
 
-    return (
+    return (			
       <div className="wrapper">
 				<div className="w-100 d-flex justify-center">
 					<img
@@ -88,7 +93,7 @@ class Services extends React.Component {
 						src={ src }
 					></img>
 					</div>
-				<div className="services__container d-flex space-between">
+				<div className="services__container">
 					{filteredServices && this.renderList()}
 				</div>        
       </div>
