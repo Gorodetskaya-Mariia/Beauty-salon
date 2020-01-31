@@ -1,14 +1,14 @@
 header.container {
-	padding: 30px 80px;
+  padding: 30px 80px;
   background-color: black;
   -webkit-box-shadow: 0 2px 8px;
-          box-shadow: 0 2px 8px;
+  box-shadow: 0 2px 8px;
 }
 
-@media (max-width: 768px){
-	header.container {
-		padding: 30px;
-	}
+@media (max-width: 768px) {
+  header.container {
+    padding: 30px;
+  }
 }
 
 .ant-menu.ant-menu-horizontal,
@@ -22,7 +22,7 @@ header.container {
   border-right: 0;
 }
 
-.nav__item {  
+.nav__item {
   margin-right: 30px;
 }
 
@@ -39,10 +39,7 @@ header.container {
 .ant-menu.ant-menu-horizontal > .ant-menu-item:hover,
 .ant-menu-horizontal > .ant-menu-submenu:hover,
 .ant-menu-horizontal > .ant-menu-submenu-open,
-.ant-menu-horizontal > .ant-menu-submenu-selected
-/* .nav__item > a:hover,
-.nav__item > a.active  */
-{
+.ant-menu-horizontal > .ant-menu-submenu-selected {
   border-bottom: 2px solid #fc9898 !important;
 }
 
@@ -54,10 +51,7 @@ header.container {
 .ant-menu-item > a:hover,
 .ant-menu-horizontal > .ant-menu-submenu-selected,
 .ant-menu-item-selected > a,
-.ant-menu-item-selected > a:hover
-/* .nav__item > a:hover,
-.nav__item > a.active  */
-{
+.ant-menu-item-selected > a:hover {
   color: #fc9898 !important;
 }
 

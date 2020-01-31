@@ -1,5 +1,5 @@
 .services__container {
-	transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 .services__image {
@@ -9,6 +9,6 @@
 }
 
 .services__image--men {
-	width: 180px;
+  width: 180px;
   height: 248px;
 }

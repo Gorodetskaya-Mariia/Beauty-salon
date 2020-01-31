@@ -8,7 +8,7 @@ import authReducer from "./authReducer";
 export default combineReducers({
   auth: authReducer,
   services: servicesReducer,
-	form: formReducer,
-	userData: userDataReducer,
+  form: formReducer,
+  userData: userDataReducer,
   account: accountReducer
 });

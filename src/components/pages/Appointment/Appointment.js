@@ -5,7 +5,15 @@ import * as actions from "../../../actions/";
 import Spinner from "../../Spinner/Spinner";
 
 const services = ["Color", "Haircutting", "Makeup", "Waxing"];
-const time = ["10AM to 11AM", "11AM to 12PM", "12PM to 13PM", "13PM to 14PM","15PM to 16PM","16PM to 17PM","17PM to 18PM"];
+const time = [
+  "10AM to 11AM",
+  "11AM to 12PM",
+  "12PM to 13PM",
+  "13PM to 14PM",
+  "15PM to 16PM",
+  "16PM to 17PM",
+  "17PM to 18PM"
+];
 const required = value =>
   value || typeof value === "number" ? undefined : "Required";
 const alphaNumeric = value =>
@@ -15,13 +23,9 @@ const alphaNumeric = value =>
 
 class Appointment extends React.Component {
   onSubmit = formValues => {
-		const { onCreateAppointment, userId, token } = this.props;
-    onCreateAppointment(
-      formValues,
-      userId,
-      token
-		);
-		this.props.history.push("/account");
+    const { onCreateAppointment, userId, token } = this.props;
+    onCreateAppointment(formValues, userId, token);
+    this.props.history.push("/account");
   };
 
   renderSelect = ({ input, label, options, meta: { touched, error } }) => {
@@ -44,7 +48,7 @@ class Appointment extends React.Component {
   };
 
   render() {
-		const { handleSubmit, loading } = this.props;
+    const { handleSubmit, loading } = this.props;
     let form = (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <Field

@@ -6,47 +6,47 @@ import "./Home.css";
 
 class Home extends React.Component {
   render() {
-		const { isAuthenticated } = this.props;
+    const { isAuthenticated } = this.props;
     return (
       <div className="wrapper wrapper--home d-flex space-between align-items-center">
-				<div className="">
-					<h2 className="title">Cuts, Colour Specialists, Hair, Waxing for Men & Women</h2>
-					{isAuthenticated
-					? (<Link to="/appointment">
-								<Button
-									type="primary"
-									size={"large"}
-								>
-									Book an appointment
-								</Button>
-							</Link>)
-					: (<Link to="/login">
-								<Button
-									type="primary"
-									size={"large"}
-								>
-									Sign up for booking
-								</Button>
-						</Link>)
-					}
-				</div>
-				<Carousel dotPosition="bottom" autoplay="true">
+        <div className="">
+          <h2 className="title">
+            Cuts, Colour Specialists, Hair, Waxing for Men & Women
+          </h2>
+          {isAuthenticated ? (
+            <Link to="/appointment">
+              <Button type="primary" size={"large"}>
+                Book an appointment
+              </Button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <Button type="primary" size={"large"}>
+                Sign up for booking
+              </Button>
+            </Link>
+          )}
+        </div>
+        <Carousel dotPosition="bottom" autoplay="true">
           <div className="slide">
-					<img src="/images/stylist-1.jpg"></img>
+            <img src="/images/stylist-1.jpg"></img>
             <h3>Anna</h3>
-						<div>Cutting Specialist</div>
+            <div>Cutting Specialist</div>
           </div>
           <div>
-					<img src="/images/stylist-2.png"></img>
+            <img src="/images/stylist-2.png"></img>
             <h3>Whitney</h3>
-						<div>Makeup Artist,<br/> Facial Waxing Specialist</div>
+            <div>
+              Makeup Artist,
+              <br /> Facial Waxing Specialist
+            </div>
           </div>
           <div>
-					<img src="/images/stylist-3.jpg"></img>
+            <img src="/images/stylist-3.jpg"></img>
             <h3>Karla</h3>
-						<div>Master Colorist</div>
-          </div>         
-        </Carousel>   
+            <div>Master Colorist</div>
+          </div>
+        </Carousel>
       </div>
     );
   }

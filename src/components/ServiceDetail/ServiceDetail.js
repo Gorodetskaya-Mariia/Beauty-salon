@@ -17,8 +17,8 @@ class ServiceDetail extends React.Component {
   };
 
   renderList() {
-		const { selectedService } = this.props.services;
-		const { isAuthenticated } = this.props;
+    const { selectedService } = this.props.services;
+    const { isAuthenticated } = this.props;
     let filteredArray = Object.keys(selectedService);
     let result = [];
     for (let item in filteredArray) {
@@ -53,26 +53,23 @@ class ServiceDetail extends React.Component {
   }
 
   render() {
-		const { services, isAuthenticated } = this.props;
+    const { services, isAuthenticated } = this.props;
     return (
       <div className="wrapper">
         <div className="service__wrapper d-flex flex-column">
-					<div className="service__description">
+          <div className="service__description">
             {services.selectedService.description}
           </div>
-          <div className="service__list d-flex flex-column">            
+          <div className="service__list d-flex flex-column">
             {services.selectedService && this.renderList()}
           </div>
         </div>
         {!isAuthenticated && (
           <div className="service__info">
-					<Icon type="exclamation-circle" className="service__icon"/>
+            <Icon type="exclamation-circle" className="service__icon" />
             Booking is available only for authenticated customers. If you want
             to book an appointment please
-            <span onClick={this.onSignupHandler}>
-              {" "}
-              click for sign up.
-            </span>
+            <span onClick={this.onSignupHandler}> click for sign up.</span>
           </div>
         )}
       </div>

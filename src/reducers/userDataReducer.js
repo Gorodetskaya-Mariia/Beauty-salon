@@ -3,8 +3,8 @@ import { updateObject } from "../utility";
 
 const initialState = {
   userData: [],
-	loading: false,
-	update: true
+  loading: false,
+  update: true
 };
 
 const addUserDataStart = (state, action) => {
@@ -28,8 +28,8 @@ const addUserDataFail = (state, action) => {
 
 const fetchUserDataSuccess = (state, action) => {
   return updateObject(state, {
-		userData: action.userData,
-		update: true
+    userData: action.userData,
+    update: true
   });
 };
 
@@ -63,11 +63,11 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_USER_DATA_SUCCESS:
       return fetchUserDataSuccess(state, action);
     case actionTypes.FETCH_USER_DATA_FAIL:
-			return fetchUserDataFail(state, action);
-			case actionTypes.UPDATE_USER_DATA_SUCCESS:
-				return updateUserDataSuccess(state, action);
-			case actionTypes.UPDATE_USER_DATA_FAIL:
-				return updateUserDataFail(state, action);
+      return fetchUserDataFail(state, action);
+    case actionTypes.UPDATE_USER_DATA_SUCCESS:
+      return updateUserDataSuccess(state, action);
+    case actionTypes.UPDATE_USER_DATA_FAIL:
+      return updateUserDataFail(state, action);
     default:
       return state;
   }

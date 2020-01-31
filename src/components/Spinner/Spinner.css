@@ -1,8 +1,8 @@
 .spinner-wrapper {
-	margin: 100px auto;
-	width: 45px;
+  margin: 100px auto;
+  width: 45px;
 }
 
 .spinner-wrapper .ant-spin-dot-item {
-	background-color: #fc9898;
+  background-color: #fc9898;
 }

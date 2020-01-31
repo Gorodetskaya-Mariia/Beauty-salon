@@ -87,12 +87,12 @@ form {
   .form__field,
   .form__field--text,
   .form__field select,
-	.form__field input,
-	.form__button {
+  .form__field input,
+  .form__button {
     width: 300px;
-	}
+  }
 
-	.container--form {
-		padding-bottom: 60px;
+  .container--form {
+    padding-bottom: 60px;
   }
 }

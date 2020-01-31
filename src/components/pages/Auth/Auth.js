@@ -5,7 +5,7 @@ import { Redirect, withRouter } from "react-router-dom";
 import * as actions from "../../../actions";
 import Spinner from "../../Spinner/Spinner";
 import Form from "../../Form/Form";
-import { Modal } from 'antd';
+import { Modal } from "antd";
 
 const required = value =>
   value || typeof value === "number" ? undefined : "Required";
@@ -21,7 +21,7 @@ const email = value =>
 
 let FormInfo = null;
 class Auth extends React.Component {
-	state = { isSignup: true, flag: false, visible: true };
+  state = { isSignup: true, flag: false, visible: true };
 
   switchAuthModeHandler = () => {
     this.setState(prevState => {
@@ -34,13 +34,9 @@ class Auth extends React.Component {
   };
 
   onSubmit = formValues => {
-		const { onAuth } = this.props;
-		const { isSignup } = this.state;
-    onAuth(
-      formValues.email,
-      formValues.password,
-      isSignup
-    );
+    const { onAuth } = this.props;
+    const { isSignup } = this.state;
+    onAuth(formValues.email, formValues.password, isSignup);
 
     if (isSignup) {
       FormInfo = (
@@ -48,13 +44,10 @@ class Auth extends React.Component {
           <div className="form__info">
             Please provide us information about you.
           </div>
-					<div className="form__info">
+          <div className="form__info">
             The information requires for booking an appointment.
           </div>
-          <Form 
-						newUser={true}
-						changeInfoHandler={this.changeInfoHandler}
-					/>
+          <Form newUser={true} changeInfoHandler={this.changeInfoHandler} />
         </div>
       );
       this.setState({ flag: true });
@@ -67,15 +60,11 @@ class Auth extends React.Component {
       <div className="form__field">
         <label>{label}</label>
         <div>
-          <input
-						{...input}
-						placeholder={label}
-						type={type}					
-					/>
+          <input {...input} placeholder={label} type={type} />
           {touched && error && <div className="error">{error}</div>}
         </div>
       </div>
-    )
+    );
   };
 
   OkHandle = () => {
@@ -89,14 +78,14 @@ class Auth extends React.Component {
   };
 
   render() {
-		const {
-			handleSubmit,
-			submitting,
-			loading,
-			error,
-			isAuthenticated
-		} = this.props;
-		const { flag, isSignup, visible } = this.state;
+    const {
+      handleSubmit,
+      submitting,
+      loading,
+      error,
+      isAuthenticated
+    } = this.props;
+    const { flag, isSignup, visible } = this.state;
     let errorMessage = null;
     let form = null;
 
@@ -135,14 +124,16 @@ class Auth extends React.Component {
     }
 
     if (error) {
-      errorMessage = <Modal
-        title=""
-        visible={visible}
-        onOk={this.OkHandle}
-        onCancel={this.CancelHandle}
-      >
-        <p>{error.message}</p>        
-      </Modal>
+      errorMessage = (
+        <Modal
+          title=""
+          visible={visible}
+          onOk={this.OkHandle}
+          onCancel={this.CancelHandle}
+        >
+          <p>{error.message}</p>
+        </Modal>
+      );
       FormInfo = null;
     }
 
@@ -173,7 +164,10 @@ class Auth extends React.Component {
     if (!isAuthenticated) {
       messageToSwitch = (
         <div className="form__info">
-          If you {isSignup ? "already HAVE an account please press button bellow " : "DO NOT have an account please press button bellow "}
+          If you{" "}
+          {isSignup
+            ? "already HAVE an account please press button bellow "
+            : "DO NOT have an account please press button bellow "}
           and enter email and password.
         </div>
       );
