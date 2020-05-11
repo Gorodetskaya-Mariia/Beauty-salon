@@ -19,17 +19,18 @@
 
 .service__item {
   font-size: 15px;
-  width: 60%;
+  width: 50%;
   margin: 0 auto 15px auto;
 }
 
 .service__name {
-  width: 35%;
+  width: 50%;
   font-weight: 700;
   margin: 0 30px 0 0;
 }
 
 .service__price {
+  width: 20%;
   margin-bottom: 0;
 }
 

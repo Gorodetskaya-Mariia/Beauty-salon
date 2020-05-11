@@ -28,26 +28,24 @@ class ServiceDetail extends React.Component {
     }
 
     return result.map(item => (
-      <div className="service__item d-flex align-items-center" key={item}>
+      <div className="service__item d-flex align-items-center justify-center" key={item}>
         <p className="service__name">{item}</p>
         <p className="service__price">{`from $${selectedService[item].price}`}</p>
-        <div className="service__buttons d-flex">
+        {isAuthenticated && <div className="service__buttons d-flex">
           <Button
             type="primary"
-            disabled={!isAuthenticated}
             className="service__buttons--book"
             onClick={this.onBookHandler}
           >
             Book
           </Button>
-          <Button
+          {/* <Button
             type="danger"
-            disabled={!isAuthenticated}
             onClick={this.onCancelHandler}
           >
             Cancel
-          </Button>
-        </div>
+          </Button> */}
+        </div>}
       </div>
     ));
   }
