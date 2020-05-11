@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actions from "../../../actions/index";
-import ServicesCard from "../../Card/ServicesCard";
-import Spinner from "../../Spinner/Spinner";
+import * as actions from "../../actions/index";
+import ServicesCard from "../../components/Card/ServicesCard";
+import Spinner from "../../components/Spinner/Spinner";
 import "./Services.css";
 
 class Services extends React.Component {

@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as actions from "../../../actions";
-import Spinner from "../../Spinner/Spinner";
-import Form from "../../Form/Form";
+import * as actions from "../../actions";
+import Spinner from "../../components/Spinner/Spinner";
+import Form from "../../components/Form/Form";
 import axios from "axios";
 import { Card, Button } from "antd";
 import "./Account.css";

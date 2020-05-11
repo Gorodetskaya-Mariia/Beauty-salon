@@ -2,9 +2,9 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
-import * as actions from "../../../actions";
-import Spinner from "../../Spinner/Spinner";
-import Form from "../../Form/Form";
+import * as actions from "../../actions";
+import Spinner from "../../components/Spinner/Spinner";
+import Form from "../../components/Form/Form";
 import { Modal } from "antd";
 
 const required = value =>

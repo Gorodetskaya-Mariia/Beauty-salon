@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import Home from "./components/pages/Home/Home";
-import Services from "./components/pages/Services/Services";
+import Home from "./containers/Home/Home";
+import Services from "./containers/Services/Services";
 import ServiceDetail from "./components/ServiceDetail/ServiceDetail";
-import Account from "./components/pages/Account/Account";
-import Appointment from "./components/pages/Appointment/Appointment";
-import Auth from "./components/pages/Auth/Auth";
+import Account from "./containers/Account/Account";
+import Appointment from "./containers/Appointment/Appointment";
+import Auth from "./containers/Auth/Auth";
 import Logout from "./components/Logout/Logout";
 import Header from "./components/Header/Header";
 import * as actions from "./actions";
