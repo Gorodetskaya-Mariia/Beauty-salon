@@ -1,5 +1,5 @@
 import * as actionTypes from "../actions/types";
-import { updateObject } from "../utilities/utility";
+import { updateObject } from "../utilities/updateObject";
 
 const initialState = {
   token: null,
@@ -23,7 +23,7 @@ const authSuccess = (state, action) => {
 
 const authFail = (state, action) => {
   return updateObject(state, {
-    error: action.error,
+    error: action.error.response.data.error,
     loading: false
   });
 };
