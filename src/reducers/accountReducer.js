@@ -1,5 +1,5 @@
 import * as actionTypes from "../actions/types";
-import { updateObject } from "..//utilities/updateObject";
+import { updateObject } from "../utilities/updateObject";
 
 const initialState = {
   appointments: [],

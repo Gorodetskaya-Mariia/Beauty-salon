@@ -29,12 +29,12 @@ class Home extends React.Component {
         </div>
         <Carousel dotPosition="bottom" autoplay="true">
           <div className="slide">
-            <img src="/images/stylist-1.jpg"></img>
+            <img src="/images/stylist-1.jpg" alt="Anna is a cutting Specialist"></img>
             <h3>Anna</h3>
             <div>Cutting Specialist</div>
           </div>
           <div>
-            <img src="/images/stylist-2.png"></img>
+            <img src="/images/stylist-2.png" alt="Whitney is a Makeup Artist and a Facial Waxing Specialist"></img>
             <h3>Whitney</h3>
             <div>
               Makeup Artist,
@@ -42,7 +42,7 @@ class Home extends React.Component {
             </div>
           </div>
           <div>
-            <img src="/images/stylist-3.jpg"></img>
+            <img src="/images/stylist-3.jpg" alt="Karla is a Master Colorist"></img>
             <h3>Karla</h3>
             <div>Master Colorist</div>
           </div>
