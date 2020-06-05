@@ -39,7 +39,8 @@ main.container {
   color: rgba(255, 255, 255, 0.4);
 }
 
-.ant-modal-content .ant-btn:hover {
+.ant-modal-content .ant-btn:hover,
+.ant-modal-content .ant-btn:focus {
   color: #ff7875;
   border-color: #ff7875;
 }

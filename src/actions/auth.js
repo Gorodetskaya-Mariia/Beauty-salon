@@ -1,11 +1,12 @@
 import axios from "axios";
-import { AUTH_START, AUTH_SUCCESS, AUTH_FAIL, AUTH_LOGOUT } from "./types";
+import { AUTH_START, AUTH_SUCCESS, AUTH_FAIL, AUTH_LOGOUT, CLEAR_ERROR } from "./types";
 
 export const authStart = () => {
   return {
     type: AUTH_START
   };
 };
+
 export const authSuccess = (token, userId) => {
   return {
     type: AUTH_SUCCESS,
@@ -13,10 +14,17 @@ export const authSuccess = (token, userId) => {
     userId: userId
   };
 };
+
 export const authFail = error => {
   return {
     type: AUTH_FAIL,
     error: error
+  };
+};
+
+export const clearError = () => {
+  return {
+    type: CLEAR_ERROR,
   };
 };
 
@@ -28,6 +36,7 @@ export const logout = () => {
     type: AUTH_LOGOUT
   };
 };
+
 export const checkAuthTimeout = expirationTime => async dispatch => {
   setTimeout(() => {
     dispatch(logout());

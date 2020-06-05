@@ -1,4 +1,4 @@
-export { auth, logout, authCheckState } from "./auth";
+export { auth, logout, authCheckState, clearError } from "./auth";
 
 export { initServices, setSelectedService } from "./services";
 

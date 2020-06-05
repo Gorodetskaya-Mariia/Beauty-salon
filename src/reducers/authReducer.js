@@ -21,6 +21,12 @@ const authSuccess = (state, action) => {
   });
 };
 
+const clearError = (state, action) => {
+  return updateObject(state, {
+    error: null,
+  });
+};
+
 const authFail = (state, action) => {
   return updateObject(state, {
     error: action.error.response.data.error,
@@ -42,6 +48,8 @@ const reducer = (state = initialState, action) => {
       return authFail(state, action);
     case actionTypes.AUTH_LOGOUT:
       return authLogout(state, action);
+    case actionTypes.CLEAR_ERROR:
+      return clearError(state, action);
     default:
       return state;
   }
