@@ -22,25 +22,13 @@ const email = (value) =>
 class Signin extends React.Component {
   state = {
     isSignup: false,
-    errorMessage: null,
+    isError: false,
   };
 
   componentDidUpdate(prevProps) {
     const { error } = this.props;
     if (prevProps.error !== error) {
-      error &&
-        this.setState({
-          errorMessage: (
-            <Modal
-              title=""
-              visible={true}
-              onOk={this.OkHandle}
-              onCancel={this.CancelHandle}
-            >
-              <p>{formatServerMessage(error.message)}</p>
-            </Modal>
-          ),
-        });
+      error && this.setState({ isError: true });
     }
   }
 
@@ -57,13 +45,13 @@ class Signin extends React.Component {
   OkHandle = () => {
     const { onClearErrors } = this.props;
     onClearErrors();
-    this.setState({ errorMessage: null });
+    this.setState({ isError: false });
   };
 
   CancelHandle = () => {
     const { onClearErrors } = this.props;
     onClearErrors();
-    this.setState({ errorMessage: null });
+    this.setState({ isError: false });
   };
 
   renderField = ({ input, label, type, meta: { touched, error } }) => {
@@ -78,11 +66,25 @@ class Signin extends React.Component {
     );
   };
 
-  render() {
-    const { handleSubmit, submitting, loading, isAuthenticated } = this.props;
-    const { isSignup, errorMessage } = this.state;
+  renderError = () => {
+    const { error } = this.props;
+    return (
+      <Modal
+        title=""
+        visible={true}
+        onOk={this.OkHandle}
+        onCancel={this.CancelHandle}
+      >
+        <p>{formatServerMessage(error.message)}</p>
+      </Modal>
+    );
+  };
 
-    let form = (
+  renderForm = () => {
+    const { handleSubmit, submitting, loading } = this.props;
+    return loading ? (
+      <Spinner />
+    ) : (
       <Fragment>
         <div className="form__info">Login to your account</div>
         <form onSubmit={handleSubmit(this.onSubmit)}>
@@ -119,10 +121,11 @@ class Signin extends React.Component {
         </div>
       </Fragment>
     );
+  };
 
-    if (loading) {
-      form = <Spinner />;
-    }
+  render() {
+    const { isAuthenticated } = this.props;
+    const { isSignup, isError } = this.state;
 
     let authRedirect = null;
     if (isAuthenticated && !isSignup) {
@@ -132,8 +135,8 @@ class Signin extends React.Component {
     return (
       <div className="container--form">
         {authRedirect}
-        {errorMessage}
-        {form}
+        {isError && this.renderError()}
+        {this.renderForm()}
       </div>
     );
   }
