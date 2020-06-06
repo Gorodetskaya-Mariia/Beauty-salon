@@ -30,8 +30,8 @@ class Services extends React.Component {
     const { services, onInitSelectedServices } = this.props;
 
     forWhom === "/services-for-women"
-      ? onInitSelectedServices(services.women[item])
-      : onInitSelectedServices(services.men[item]);
+      ? onInitSelectedServices(services.women[item], forWhom)
+      : onInitSelectedServices(services.men[item], forWhom);
   }
 
   afterSetStateFinished(arr) {
@@ -108,7 +108,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onInitServices: () => dispatch(actions.initServices()),
-    onInitSelectedServices: state => dispatch(actions.setSelectedService(state))
+    onInitSelectedServices: (service, forWhom) => dispatch(actions.setSelectedService(service, forWhom))
   };
 };
 

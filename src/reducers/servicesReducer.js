@@ -5,7 +5,8 @@ const initialState = {
   services: null,
   error: false,
   selectedService: null,
-  loading: false
+  loading: false,
+  forWhom: null,
 };
 
 const servicesStart = (state, action) => {
@@ -29,7 +30,8 @@ const fetchServicesFailed = (state, action) => {
 
 const setSelectedService = (state, action) => {
   return updateObject(state, {
-    selectedService: action.setSelectedService
+    selectedService: action.setSelectedService,
+    forWhom: action.forWhom
   });
 };
 

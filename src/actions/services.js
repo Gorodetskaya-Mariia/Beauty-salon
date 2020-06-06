@@ -25,10 +25,11 @@ export const fetchServicesFailed = () => {
   };
 };
 
-export const setSelectedService = service => {
+export const setSelectedService = (service, forWhom) => {
   return {
     type: SET_SELECTED_SERVICE,
-    setSelectedService: service
+    setSelectedService: service,
+    forWhom: forWhom
   };
 };
 

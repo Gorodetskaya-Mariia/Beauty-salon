@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { Button, Icon } from "antd";
 import "./ServiceDetail.css";
 
@@ -51,9 +52,16 @@ class ServiceDetail extends React.Component {
   }
 
   render() {
-    const { services, isAuthenticated } = this.props;
+    const { services, isAuthenticated, forWhom } = this.props;
     return (
       <div className="wrapper">
+      <Link
+        to={forWhom}
+        key={forWhom}
+        className="service__info"
+      >
+        <span>Back to services</span>
+      </Link>
         <div className="service__wrapper d-flex flex-column">
           <div className="service__description">
             {services.selectedService.description}
@@ -78,7 +86,8 @@ class ServiceDetail extends React.Component {
 const mapStateToProps = state => {
   return {
     services: state.services,
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
+    forWhom: state.services.forWhom,
   };
 };
 
