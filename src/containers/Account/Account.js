@@ -58,7 +58,9 @@ class Account extends React.Component {
       );
     }
 
-    appointmentsList = appointments.map(appointment => (
+    appointmentsList =
+      appointments && appointments.length
+        ? appointments.map(appointment => (
       <div
         key={appointment.id}
         className="account__card-row d-flex space-between align-items-center"
@@ -73,7 +75,8 @@ class Account extends React.Component {
           Delete
         </Button>
       </div>
-    ));
+    ))
+    : <p>You haven't booked any services</p>;
 
     if (userData.length) {
       userDataList = userData.map(item => (
@@ -114,7 +117,7 @@ class Account extends React.Component {
     if (!loading) {
       content = (
         <div className="account__card-wrapper d-flex justify-center">
-          <Card title="Services" bordered={true} className="account__card">
+          <Card title="Booked services" bordered={true} className="account__card">
             {appointmentsList}
           </Card>
           <Card
