@@ -3,7 +3,8 @@ import {
   FETCH_SERVICES_FAILED,
   FETCH_SERVICES_START,
   SET_SERVICES,
-  SET_SELECTED_SERVICE
+  SET_SELECTED_SERVICE,
+  SET_SERVICE_FOR_BOOKING,
 } from "./types";
 
 export const servicesStart = () => {
@@ -30,6 +31,13 @@ export const setSelectedService = (service, forWhom) => {
     type: SET_SELECTED_SERVICE,
     setSelectedService: service,
     forWhom: forWhom
+  };
+};
+
+export const setServiceForBooking = (service) => {
+  return {
+    type: SET_SERVICE_FOR_BOOKING,
+    setServiceForBooking: service,
   };
 };
 

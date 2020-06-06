@@ -1,6 +1,6 @@
 export { auth, logout, authCheckState, clearError } from "./auth";
 
-export { initServices, setSelectedService } from "./services";
+export { initServices, setSelectedService, setServiceForBooking } from "./services";
 
 export { fetchAppointments, createAppointment } from "./account";
 

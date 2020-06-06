@@ -1,11 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import * as actions from "../../actions";
 import { Button, Icon } from "antd";
 import "./ServiceDetail.css";
 
 class ServiceDetail extends React.Component {
-  onBookHandler = () => {
+  onBookHandler = (service) => {
+    const { setServiceForBooking } = this.props;
+    setServiceForBooking(service);
     this.props.history.push("/appointment");
   };
 
@@ -14,7 +17,7 @@ class ServiceDetail extends React.Component {
   };
 
   onSignupHandler = () => {
-    this.props.history.push("/login");
+    this.props.history.push("/signin");
   };
 
   renderList() {
@@ -36,7 +39,7 @@ class ServiceDetail extends React.Component {
           <Button
             type="primary"
             className="service__buttons--book"
-            onClick={this.onBookHandler}
+            onClick={()=> this.onBookHandler(item)}
           >
             Book
           </Button>
@@ -75,7 +78,7 @@ class ServiceDetail extends React.Component {
             <Icon type="exclamation-circle" className="service__icon" />
             Booking is available only for authenticated customers. If you want
             to book an appointment please
-            <span onClick={this.onSignupHandler}> click for sign up.</span>
+            <span onClick={this.onSignupHandler}> click for sign in.</span>
           </div>
         )}
       </div>
@@ -91,4 +94,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ServiceDetail);
+const mapDispatchToProps = dispatch => {
+  return {
+    setServiceForBooking: service => dispatch(actions.setServiceForBooking(service))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ServiceDetail);

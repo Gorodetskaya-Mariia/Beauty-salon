@@ -22,6 +22,21 @@ const alphaNumeric = value =>
     : undefined;
 
 class Appointment extends React.Component {
+  state = {
+    services: [],
+  }
+
+  componentDidMount() {
+    this.setServices();
+  }
+
+  setServices = () => {
+    const { services,  firstService} = this.props;
+    const unfilteredServices = Object.keys(services).filter(service => service !== "description");
+    const filteredServices = unfilteredServices.sort(service => service === firstService ? -1: 0);
+    this.setState({ services: filteredServices });
+  }
+
   onSubmit = formValues => {
     const { onCreateAppointment, userId, token } = this.props;
     onCreateAppointment(formValues, userId, token);
@@ -34,9 +49,9 @@ class Appointment extends React.Component {
         <label>{label}</label>
         <div className="form__field-select">
           <select {...input}>
-            <option value="">...</option>
-            {options.map(option => (
-              <option value={option} key={option}>
+            <option value={options[0]}>{options[0]}</option>
+            {options.map((option, index) => (
+              index !== 0 && <option value={option} key={option}>
                 {option}
               </option>
             ))}
@@ -49,6 +64,7 @@ class Appointment extends React.Component {
 
   render() {
     const { handleSubmit, loading } = this.props;
+    const { services } = this.state;
     let form = (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <Field
@@ -102,7 +118,9 @@ const mapStateToProps = state => {
   return {
     loading: state.account.loading,
     token: state.auth.token,
-    userId: state.auth.userId
+    userId: state.auth.userId,
+    services: state.services.selectedService,
+    firstService: state.services.setServiceForBooking,
   };
 };
 
