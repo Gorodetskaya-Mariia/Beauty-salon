@@ -12,32 +12,41 @@ const time = [
   "13PM to 14PM",
   "15PM to 16PM",
   "16PM to 17PM",
-  "17PM to 18PM"
+  "17PM to 18PM",
 ];
-const required = value =>
+const required = (value) =>
   value || typeof value === "number" ? undefined : "Required";
-const alphaNumeric = value =>
+const alphaNumeric = (value) =>
   value && /[^a-zA-Z0-9 ]/i.test(value)
     ? "Only alphanumeric characters"
     : undefined;
 
+const defaultServices = ["Color", "Haircutting", "Makeup", "Waxing"];
 class Appointment extends React.Component {
   state = {
     services: [],
-  }
+  };
 
   componentDidMount() {
     this.setServices();
   }
 
   setServices = () => {
-    const { services,  firstService} = this.props;
-    const unfilteredServices = Object.keys(services).filter(service => service !== "description");
-    const filteredServices = unfilteredServices.sort(service => service === firstService ? -1: 0);
-    this.setState({ services: filteredServices });
-  }
+    const { services, firstService } = this.props;
+    if (services && firstService) {
+      const unfilteredServices = Object.keys(services).filter(
+        (service) => service !== "description"
+      );
+      const filteredServices = unfilteredServices.sort((service) =>
+        service === firstService ? -1 : 0
+      );
+      this.setState({ services: filteredServices });
+    } else {
+      this.setState({ services: defaultServices });
+    }
+  };
 
-  onSubmit = formValues => {
+  onSubmit = (formValues) => {
     const { onCreateAppointment, userId, token } = this.props;
     onCreateAppointment(formValues, userId, token);
     this.props.history.push("/account");
@@ -50,11 +59,14 @@ class Appointment extends React.Component {
         <div className="form__field-select">
           <select {...input}>
             <option value={options[0]}>{options[0]}</option>
-            {options.map((option, index) => (
-              index !== 0 && <option value={option} key={option}>
-                {option}
-              </option>
-            ))}
+            {options.map(
+              (option, index) =>
+                index !== 0 && (
+                  <option value={option} key={option}>
+                    {option}
+                  </option>
+                )
+            )}
           </select>
           {touched && error && <div className="error">{error}</div>}
         </div>
@@ -106,7 +118,7 @@ class Appointment extends React.Component {
   }
 }
 
-const validate = formValues => {
+const validate = (formValues) => {
   const errors = {};
   if (!formValues.service) errors.service = "You have to select a service";
   if (!formValues.time) errors.time = "You have to select time";
@@ -114,7 +126,7 @@ const validate = formValues => {
   return errors;
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     loading: state.account.loading,
     token: state.auth.token,
@@ -124,10 +136,10 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onCreateAppointment: (formValues, userId, token) =>
-      dispatch(actions.createAppointment(formValues, userId, token))
+      dispatch(actions.createAppointment(formValues, userId, token)),
   };
 };
 
@@ -135,5 +147,5 @@ Appointment = connect(mapStateToProps, mapDispatchToProps)(Appointment);
 
 export default reduxForm({
   form: "createAppointment",
-  validate
+  validate,
 })(Appointment);
