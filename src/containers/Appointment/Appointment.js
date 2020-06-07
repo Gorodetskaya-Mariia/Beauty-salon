@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import * as actions from "../../actions/";
+import * as actions from "../../store/actions/";
 import Spinner from "../../components/Spinner/Spinner";
 
 const services = ["Color", "Haircutting", "Makeup", "Waxing"];

@@ -1,11 +1,11 @@
 import * as actionTypes from "../actions/types";
-import { updateObject } from "../utilities/updateObject";
+import { updateObject } from "../../utilities/updateObject";
 
 const initialState = {
   token: null,
   userId: null,
   error: null,
-  loading: false
+  loading: false,
 };
 
 const authStart = (state, action) => {
@@ -17,7 +17,7 @@ const authSuccess = (state, action) => {
     token: action.idToken,
     userId: action.userId,
     error: null,
-    loading: false
+    loading: false,
   });
 };
 
@@ -30,7 +30,7 @@ const clearError = (state, action) => {
 const authFail = (state, action) => {
   return updateObject(state, {
     error: action.error.response.data.error,
-    loading: false
+    loading: false,
   });
 };
 

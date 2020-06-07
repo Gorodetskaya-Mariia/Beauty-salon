@@ -1,14 +1,14 @@
 import React from "react";
 import AuthForm from "../../components/AuthForm/AuthForm";
 
-class Signin extends React.Component {
+class Signup extends React.Component {
   render() {
     return (
       <div className="container--form">
-        <AuthForm isSignup={false} />
+        <AuthForm isSignup={true} />
       </div>
     );
   }
 }
 
-export default Signin;
+export default Signup;

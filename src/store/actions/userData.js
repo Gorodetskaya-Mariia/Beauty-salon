@@ -1,5 +1,5 @@
 import axios from "axios";
-import { updateObject } from "../utilities/updateObject";
+import { updateObject } from "../../utilities/updateObject";
 import {
   ADD_USER_DATA_START,
   ADD_USER_DATA_SUCCESS,

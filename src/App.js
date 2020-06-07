@@ -8,9 +8,10 @@ import Account from "./containers/Account/Account";
 import Appointment from "./containers/Appointment/Appointment";
 import Auth from "./containers/Auth/Auth";
 import Signin from "./containers/Signin/Signin";
-import Logout from "./components/Logout/Logout";
+import Signup from "./containers/Signup/Signup";
+import Signout from "./components/Signout/Signout";
 import Header from "./components/Header/Header";
-import * as actions from "./actions";
+import * as actions from "./store/actions";
 
 class App extends React.Component {
   componentDidMount() {
@@ -38,7 +39,8 @@ class App extends React.Component {
           />
           <Route path="/services-for-men/waxing" component={ServiceDetail} />
           {/* <Route path="/login" component={Auth} /> */}
-          <Route path="/login" component={Signin} />
+          <Route path="/signin" component={Signin} />
+          <Route path="/signup" component={Signup} />
         </main>
         <Redirect to="/" />
       </BrowserRouter>
@@ -72,8 +74,9 @@ class App extends React.Component {
             />
             <Route path="/services-for-men/waxing" component={ServiceDetail} />
             {/* <Route path="/login" component={Auth} /> */}
-            <Route path="/login" component={Signin} />
-            <Route path="/logout" component={Logout} />
+            <Route path="/signin" component={Signin} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/signout" component={Signout} />
             <Route path="/account" component={Account} />
             <Route path="/appointment" component={Appointment} />
           </main>

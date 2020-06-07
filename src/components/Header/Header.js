@@ -8,16 +8,16 @@ const { SubMenu } = Menu;
 
 export class Header extends React.Component {
   state = {
-    currentPath: ""
+    currentPath: "",
   };
 
   componentDidMount() {
     this.setState({ currentPath: "home" });
   }
 
-  handleClick = e => {
+  handleClick = (e) => {
     this.setState({
-      currentPath: e.key
+      currentPath: e.key,
     });
   };
 
@@ -33,54 +33,47 @@ export class Header extends React.Component {
           mode="horizontal"
         >
           <Menu.Item key="home">
-            <Link to="/">
-              Home
-            </Link>
+            <Link to="/">Home</Link>
           </Menu.Item>
           <SubMenu
             title={<span className="submenu-title-wrapper">Services</span>}
           >
             <Menu.ItemGroup title="">
               <Menu.Item key="for men">
-                <Link to="/services-for-men">
-                  for men
-                </Link>
+                <Link to="/services-for-men">for men</Link>
               </Menu.Item>
               <Menu.Item key="for women">
-                <Link to="/services-for-women">
-                  for women
-                </Link>
+                <Link to="/services-for-women">for women</Link>
               </Menu.Item>
             </Menu.ItemGroup>
           </SubMenu>
           {this.props.isAuthenticated && (
             <Menu.Item key="account">
-              <Link to="/account">
-                My account
-              </Link>
+              <Link to="/account">My account</Link>
             </Menu.Item>
           )}
 
-          <Menu.Item key="login">
+          <Menu.Item key="signin">
             {!this.props.isAuthenticated ? (
-              <Link to="/login">
-                Login
-              </Link>
+              <Link to="/signin">Sign in</Link>
             ) : (
-              <Link to="/logout">
-                Logout
-              </Link>
+              <Link to="/signout">Sign out</Link>
             )}
           </Menu.Item>
+          {!this.props.isAuthenticated && (
+            <Menu.Item key="signup">
+              <Link to="/signup">Sign up</Link>
+            </Menu.Item>
+          )}
         </Menu>
       </header>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
   };
 };
 

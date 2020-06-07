@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as actions from "../../actions";
+import * as actions from "../../store/actions";
 import Spinner from "../../components/Spinner/Spinner";
 import Form from "../../components/Form/Form";
 import axios from "axios";

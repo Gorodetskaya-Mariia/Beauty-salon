@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actions from "../../actions/index";
+import * as actions from "../../store/actions/index";
 import ServicesCard from "../../components/Card/ServicesCard";
 import Spinner from "../../components/Spinner/Spinner";
 import "./Services.css";

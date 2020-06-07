@@ -2,7 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
-import * as actions from "../../actions";
+import * as actions from "../../store/actions";
 import Spinner from "../../components/Spinner/Spinner";
 import Form from "../../components/Form/Form";
 import { Modal } from "antd";

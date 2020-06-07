@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import * as actions from "../../actions";
+import * as actions from "../../store/actions";
 import "./Form.css";
 
 const required = value =>
@@ -16,7 +16,7 @@ export const minLength = min => value =>
 export const minLength3 = minLength(3);
 
 const alpha = value =>
-  value && /[^a-zA-Z]/i.test(value)
+  value && !/^([а-яё\s]+|[a-z\s]+)$/iu.test(value)
     ? "Only alphanumeric characters"
     : undefined;
 

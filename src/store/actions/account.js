@@ -1,5 +1,5 @@
 import axios from "axios";
-import { updateObject } from "../utilities/updateObject";
+import { updateObject } from "../../utilities/updateObject";
 import {
   FETCH_APPOINTMENTS_START,
   FETCH_APPOINTMENTS_SUCCESS,
