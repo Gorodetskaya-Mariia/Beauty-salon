@@ -1,0 +1,53 @@
+.nav__items {
+  padding: 0;
+}
+
+.nav__submenu {
+  position: absolute;
+  top: 95%;
+  padding: 10px;
+  background: #ffffff;
+  visibility: hidden;
+  pointer-events: none;
+  list-style: none;
+  height: 0;
+  z-index: -1;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px;
+  transition: visibility 0.2s;
+}
+
+.nav__item {
+  margin-right: 30px;
+}
+
+.nav__item--submenu {
+  position: relative;
+}
+
+.nav__item--submenu:hover .nav__submenu {
+  visibility: visible;
+  height: auto;
+  z-index: 0;
+  pointer-events: auto;
+}
+
+.nav__item > a {
+  height: 40px;
+  line-height: 40px;
+  white-space: nowrap;
+  padding: 10px;
+  border-bottom: 2px solid transparent;
+  color: #ffffff;
+  transition: 0.2s;
+}
+
+.nav__submenu .nav__item > a {
+  color: #000000;
+}
+
+.nav__item > a.active,
+.nav__item > a:hover {
+  border-bottom: 2px solid #fc9898;
+  color: #fc9898;
+}

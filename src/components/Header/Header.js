@@ -1,71 +1,62 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Menu } from "antd";
+import { NavLink } from "react-router-dom";
+import NavigationItem from "../NavigationItem/NavigationItem";
 import "./Header.css";
-
-const { SubMenu } = Menu;
 
 export class Header extends React.Component {
   state = {
-    currentPath: "",
+    link: "/services-for-men",
   };
 
-  componentDidMount() {
-    this.setState({ currentPath: "home" });
-  }
-
-  handleClick = (e) => {
-    this.setState({
-      currentPath: e.key,
-    });
+  handlerClick = (e) => {
+    e.persist();
+    this.setState({ link: e.target.attributes[0].value });
   };
 
   render() {
-    const { currentPath } = this.state;
-
+    const { link } = this.state;
     return (
       <header className="container">
-        <Menu
-          onClick={this.handleClick}
-          selectedKeys={currentPath}
-          defaultSelectedKeys={currentPath}
-          mode="horizontal"
-        >
-          <Menu.Item key="home">
-            <Link to="/">Home</Link>
-          </Menu.Item>
-          <SubMenu
-            title={<span className="submenu-title-wrapper">Services</span>}
-          >
-            <Menu.ItemGroup title="">
-              <Menu.Item key="for men">
-                <Link to="/services-for-men">for men</Link>
-              </Menu.Item>
-              <Menu.Item key="for women">
-                <Link to="/services-for-women">for women</Link>
-              </Menu.Item>
-            </Menu.ItemGroup>
-          </SubMenu>
-          {this.props.isAuthenticated && (
-            <Menu.Item key="account">
-              <Link to="/account">My account</Link>
-            </Menu.Item>
-          )}
-
-          <Menu.Item key="signin">
-            {!this.props.isAuthenticated ? (
-              <Link to="/signin">Sign in</Link>
+        <nav className="nav">
+          <ul className="nav__items d-flex">
+            <NavigationItem link="/" exact>
+              Home
+            </NavigationItem>
+            <li className="nav__item nav__item--submenu">
+              <NavLink to={link} activeClassName="active">
+                Services
+              </NavLink>
+              <ul className="nav__submenu">
+                <NavigationItem
+                  link="/services-for-men"
+                  submenu
+                  clickHandler={(e) => this.handlerClick(e)}
+                >
+                  for men
+                </NavigationItem>
+                <NavigationItem
+                  link="/services-for-women"
+                  submenu
+                  clickHandler={(e) => this.handlerClick(e)}
+                >
+                  for women
+                </NavigationItem>
+              </ul>
+            </li>
+            {this.props.isAuthenticated ? (
+              <NavigationItem link="/account">My account</NavigationItem>
+            ) : null}
+            {this.props.isAuthenticated ? (
+              <NavigationItem link="/signout">Sign out</NavigationItem>
             ) : (
-              <Link to="/signout">Sign out</Link>
+              <NavigationItem link="/signin">Sign in</NavigationItem>
             )}
-          </Menu.Item>
-          {!this.props.isAuthenticated && (
-            <Menu.Item key="signup">
-              <Link to="/signup">Sign up</Link>
-            </Menu.Item>
-          )}
-        </Menu>
+            {!this.props.isAuthenticated && (
+              <NavigationItem link="/signup">Sign up</NavigationItem>
+            )}
+          </ul>
+        </nav>
       </header>
     );
   }
