@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions/";
 import Spinner from "../../components/Spinner/Spinner";
 
-const services = ["Color", "Haircutting", "Makeup", "Waxing"];
+const defaultServices = ["Color", "Haircutting", "Makeup", "Waxing"];
 const time = [
   "10AM to 11AM",
   "11AM to 12PM",
@@ -14,14 +14,15 @@ const time = [
   "16PM to 17PM",
   "17PM to 18PM",
 ];
+
 const required = (value) =>
   value || typeof value === "number" ? undefined : "Required";
+
 const alphaNumeric = (value) =>
   value && /[^a-zA-Z0-9 ]/i.test(value)
     ? "Only alphanumeric characters"
     : undefined;
 
-const defaultServices = ["Color", "Haircutting", "Makeup", "Waxing"];
 class Appointment extends React.Component {
   state = {
     services: [],
@@ -58,15 +59,12 @@ class Appointment extends React.Component {
         <label>{label}</label>
         <div className="form__field-select">
           <select {...input}>
-            <option value={options[0]}>{options[0]}</option>
-            {options.map(
-              (option, index) =>
-                index !== 0 && (
-                  <option value={option} key={option}>
-                    {option}
-                  </option>
-                )
-            )}
+            <option value="">...</option>
+            {options.map((option) => (
+              <option value={option} key={option}>
+                {option}
+              </option>
+            ))}
           </select>
           {touched && error && <div className="error">{error}</div>}
         </div>
