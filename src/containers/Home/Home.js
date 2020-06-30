@@ -2,18 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Button, Carousel } from "antd";
+import { Routes } from "../../constants/routes";
 import "./Home.css";
 
 class Home extends React.Component {
   onRedirectHandler = () => {
-    this.props.history.push("/signup");
+    this.props.history.push(Routes.SIGNUP);
   };
 
   render() {
     const { isAuthenticated } = this.props;
+    
     return (
       <div className="wrapper wrapper--home d-flex space-between align-items-center">
-        <div className="">
+        <div>
           <h2 className="title">
             Cuts, Colour Specialists, Hair, Waxing for Men & Women
           </h2>

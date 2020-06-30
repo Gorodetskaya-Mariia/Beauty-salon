@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as actions from "../../store/actions";
+import { Routes } from "../../constants/routes";
 import { Button, Icon } from "antd";
 import "./ServiceDetail.css";
 
@@ -9,15 +10,15 @@ class ServiceDetail extends React.Component {
   onBookHandler = (service) => {
     const { setServiceForBooking } = this.props;
     setServiceForBooking(service);
-    this.props.history.push("/appointment");
+    this.props.history.push(Routes.APPOINTMENT);
   };
 
   onCancelHandler = () => {
-    this.props.history.push("/account");
+    this.props.history.push(Routes.ACCOUNT);
   };
 
   onSignupHandler = () => {
-    this.props.history.push("/signin");
+    this.props.history.push(Routes.SIGNIN);
   };
 
   renderList() {
@@ -25,6 +26,7 @@ class ServiceDetail extends React.Component {
     const { isAuthenticated } = this.props;
     let filteredArray = Object.keys(selectedService);
     let result = [];
+
     for (let item in filteredArray) {
       if (filteredArray[item] !== "description") {
         result.push(filteredArray[item]);
@@ -52,7 +54,7 @@ class ServiceDetail extends React.Component {
         </div>}
       </div>
     ));
-  }
+  };
 
   render() {
     const { services, isAuthenticated, forWhom } = this.props;
@@ -84,7 +86,7 @@ class ServiceDetail extends React.Component {
       </div>
     );
   }
-}
+};
 
 const mapStateToProps = state => {
   return {

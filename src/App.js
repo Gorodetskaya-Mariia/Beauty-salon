@@ -1,102 +1,136 @@
 import React from "react";
 import { BrowserRouter, Route, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import Home from "./containers/Home/Home";
-import Services from "./containers/Services/Services";
-import ServiceDetail from "./components/ServiceDetail/ServiceDetail";
+import * as actions from "./store/actions";
+import { Routes } from "./constants/routes";
 import Account from "./containers/Account/Account";
 import Appointment from "./containers/Appointment/Appointment";
 import Auth from "./containers/Auth/Auth";
+import Home from "./containers/Home/Home";
+import Services from "./containers/Services/Services";
 import Signin from "./containers/Signin/Signin";
 import Signup from "./containers/Signup/Signup";
-import Signout from "./components/Signout/Signout";
 import Header from "./components/Header/Header";
-import * as actions from "./store/actions";
+import ServiceDetail from "./components/ServiceDetail/ServiceDetail";
+import Signout from "./components/Signout/Signout";
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.onTryAutoSignup();
+    const { onTryAutoSignup } = this.props;
+    onTryAutoSignup();
   }
-  render() {
-    let routes = (
+
+  renderRoutes = () => {
+    const { isAuthenticated } = this.props;
+
+    return isAuthenticated ? (
       <BrowserRouter>
         <Header></Header>
         <main className="container">
-          <Route path="/" exact component={Home} />
-          <Route path="/services-for-men" exact component={Services} />
-          <Route path="/services-for-women" exact component={Services} />
-          <Route path="/services-for-women/color" component={ServiceDetail} />
+          <Route path={Routes.ACCOUNT} component={Account} />
+          <Route path={Routes.APPOINTMENT} component={Appointment} />
+          <Route path={Routes.MAIN} exact component={Home} />
+
+          <Route path={Routes.SERVICES_FOR_MEN} exact component={Services} />
           <Route
-            path="/services-for-women/haircutting"
+            path={Routes.SERVICES_FOR_MEN_COLOR}
             component={ServiceDetail}
           />
-          <Route path="/services-for-women/makeup" component={ServiceDetail} />
-          <Route path="/services-for-women/waxing" component={ServiceDetail} />
-          <Route path="/services-for-men/color" component={ServiceDetail} />
           <Route
-            path="/services-for-men/haircutting"
+            path={Routes.SERVICES_FOR_MEN_HAIRCUTTING}
             component={ServiceDetail}
           />
-          <Route path="/services-for-men/waxing" component={ServiceDetail} />
+          <Route
+            path={Routes.SERVICES_FOR_MEN_WAXING}
+            component={ServiceDetail}
+          />
+
+          <Route path={Routes.SERVICES_FOR_WOMEN} exact component={Services} />
+          <Route
+            path={Routes.SERVICES_FOR_WOMEN_COLOR}
+            component={ServiceDetail}
+          />
+          <Route
+            path={Routes.SERVICES_FOR_WOMEN_HAIRCUTTING}
+            component={ServiceDetail}
+          />
+          <Route
+            path={Routes.SERVICES_FOR_WOMEN_MAKEUP}
+            component={ServiceDetail}
+          />
+          <Route
+            path={Routes.SERVICES_FOR_WOMEN_WAXING}
+            component={ServiceDetail}
+          />
+
+          <Route path={Routes.SIGNIN} component={Signin} />
+          <Route path={Routes.SIGNUP} component={Signup} />
+          <Route path={Routes.SIGNOUT} component={Signout} />
           {/* <Route path="/login" component={Auth} /> */}
-          <Route path="/signin" component={Signin} />
-          <Route path="/signup" component={Signup} />
         </main>
-        <Redirect to="/" />
+        <Redirect to={Routes.MAIN} />
+      </BrowserRouter>
+    ) : (
+      <BrowserRouter>
+        <Header></Header>
+        <main className="container">
+          <Route path={Routes.MAIN} exact component={Home} />
+
+          <Route path={Routes.SERVICES_FOR_MEN} exact component={Services} />
+          <Route
+            path={Routes.SERVICES_FOR_MEN_COLOR}
+            component={ServiceDetail}
+          />
+          <Route
+            path={Routes.SERVICES_FOR_MEN_HAIRCUTTING}
+            component={ServiceDetail}
+          />
+          <Route
+            path={Routes.SERVICES_FOR_MEN_WAXING}
+            component={ServiceDetail}
+          />
+
+          <Route path={Routes.SERVICES_FOR_WOMEN} exact component={Services} />
+          <Route
+            path={Routes.SERVICES_FOR_WOMEN_COLOR}
+            component={ServiceDetail}
+          />
+          <Route
+            path={Routes.SERVICES_FOR_WOMEN_HAIRCUTTING}
+            component={ServiceDetail}
+          />
+          <Route
+            path={Routes.SERVICES_FOR_WOMEN_MAKEUP}
+            component={ServiceDetail}
+          />
+          <Route
+            path={Routes.SERVICES_FOR_WOMEN_WAXING}
+            component={ServiceDetail}
+          />
+
+          {/* <Route path="/login" component={Auth} /> */}
+          <Route path={Routes.SIGNIN} component={Signin} />
+          <Route path={Routes.SIGNUP} component={Signup} />
+        </main>
+        <Redirect to={Routes.MAIN} />
       </BrowserRouter>
     );
+  };
 
-    if (this.props.isAuthenticated) {
-      routes = (
-        <BrowserRouter>
-          <Header></Header>
-          <main className="container">
-            <Route path="/" exact component={Home} />
-            <Route path="/services-for-men" exact component={Services} />
-            <Route path="/services-for-women" exact component={Services} />
-            <Route path="/services-for-women/color" component={ServiceDetail} />
-            <Route
-              path="/services-for-women/haircutting"
-              component={ServiceDetail}
-            />
-            <Route
-              path="/services-for-women/makeup"
-              component={ServiceDetail}
-            />
-            <Route
-              path="/services-for-women/waxing"
-              component={ServiceDetail}
-            />
-            <Route path="/services-for-men/color" component={ServiceDetail} />
-            <Route
-              path="/services-for-men/haircutting"
-              component={ServiceDetail}
-            />
-            <Route path="/services-for-men/waxing" component={ServiceDetail} />
-            {/* <Route path="/login" component={Auth} /> */}
-            <Route path="/signin" component={Signin} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/signout" component={Signout} />
-            <Route path="/account" component={Account} />
-            <Route path="/appointment" component={Appointment} />
-          </main>
-          <Redirect to="/" />
-        </BrowserRouter>
-      );
-    }
-    return <div>{routes}</div>;
+  render() {
+    return <div>{this.renderRoutes()}</div>;
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState())
+    onTryAutoSignup: () => dispatch(actions.authCheckState()),
   };
 };
 

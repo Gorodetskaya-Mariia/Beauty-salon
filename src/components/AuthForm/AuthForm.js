@@ -5,19 +5,8 @@ import { Redirect, withRouter } from "react-router-dom";
 import * as actions from "../../store/actions";
 import Spinner from "../../components/Spinner/Spinner";
 import { formatServerMessage } from "../../utilities/formatServerMessage";
+import { required, minLength6, email } from "../../utilities/validation";
 import { Modal } from "antd";
-
-const required = (value) =>
-  value || typeof value === "number" ? undefined : "Required";
-
-export const minLength = (min) => (value) =>
-  value && value.length < min ? `Must be ${min} characters or more` : undefined;
-export const minLength6 = minLength(6);
-
-const email = (value) =>
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? "Invalid email address"
-    : undefined;
 
 class AuthForm extends React.Component {
   state = {

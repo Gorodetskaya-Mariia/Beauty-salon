@@ -1,7 +1,8 @@
 import React from "react";
-import * as actions from "../../store/actions/index";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import * as actions from "../../store/actions/index";
+import { Routes } from "../../constants/routes";
 
 class Signout extends React.Component {
   componentDidMount() {
@@ -9,7 +10,7 @@ class Signout extends React.Component {
   }
 
   render() {
-    return <Redirect to="/" />;
+    return <Redirect to={Routes.MAIN} />;
   }
 }
 

@@ -2,11 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import NavigationItem from "../NavigationItem/NavigationItem";
+import { Routes } from "../../constants/routes";
 import "./Header.css";
 
 export class Header extends React.Component {
   state = {
-    link: "/services-for-men",
+    link: Routes.SERVICES_FOR_MEN,
   };
 
   handlerClick = (e) => {
@@ -20,7 +21,7 @@ export class Header extends React.Component {
       <header className="container">
         <nav className="nav">
           <ul className="nav__items d-flex">
-            <NavigationItem link="/" exact>
+            <NavigationItem link={Routes.MAIN} exact>
               Home
             </NavigationItem>
             <li className="nav__item nav__item--submenu">
@@ -29,14 +30,14 @@ export class Header extends React.Component {
               </NavLink>
               <ul className="nav__submenu">
                 <NavigationItem
-                  link="/services-for-men"
+                  link={Routes.SERVICES_FOR_MEN}
                   submenu
                   clickHandler={(e) => this.handlerClick(e)}
                 >
                   for men
                 </NavigationItem>
                 <NavigationItem
-                  link="/services-for-women"
+                  link={Routes.SERVICES_FOR_WOMEN}
                   submenu
                   clickHandler={(e) => this.handlerClick(e)}
                 >
@@ -45,15 +46,15 @@ export class Header extends React.Component {
               </ul>
             </li>
             {this.props.isAuthenticated ? (
-              <NavigationItem link="/account">My account</NavigationItem>
+              <NavigationItem link={Routes.ACCOUNT}>My account</NavigationItem>
             ) : null}
             {this.props.isAuthenticated ? (
-              <NavigationItem link="/signout">Sign out</NavigationItem>
+              <NavigationItem link={Routes.SIGNOUT}>Sign out</NavigationItem>
             ) : (
-              <NavigationItem link="/signin">Sign in</NavigationItem>
+              <NavigationItem link={Routes.SIGNIN}>Sign in</NavigationItem>
             )}
             {!this.props.isAuthenticated && (
-              <NavigationItem link="/signup">Sign up</NavigationItem>
+              <NavigationItem link={Routes.SIGNUP}>Sign up</NavigationItem>
             )}
           </ul>
         </nav>

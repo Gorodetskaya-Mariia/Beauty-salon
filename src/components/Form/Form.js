@@ -2,30 +2,17 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
+import {
+  required,
+  minLength3,
+  maxLength15,
+  alpha,
+  phoneNumber,
+} from "../../utilities/validation";
 import "./Form.css";
 
-const required = value =>
-  value || typeof value === "number" ? undefined : "Required";
-
-const maxLength = max => value =>
-  value && value.length > max ? `Must be ${max} characters or less` : undefined;
-const maxLength15 = maxLength(15);
-
-export const minLength = min => value =>
-  value && value.length < min ? `Must be ${min} characters or more` : undefined;
-export const minLength3 = minLength(3);
-
-const alpha = value =>
-  value && !/^([а-яё\s]+|[a-z\s]+)$/iu.test(value)
-    ? "Only alphanumeric characters"
-    : undefined;
-
-export const phoneNumber = value =>
-  value && !/^(0|[1-9][0-9]{10})$/i.test(value)
-    ? "Invalid phone number, must be 11 digits"
-    : undefined;
 class Form extends React.Component {
-  onSubmit = formValues => {
+  onSubmit = (formValues) => {
     const {
       onForm,
       onFormUpdate,
@@ -33,7 +20,7 @@ class Form extends React.Component {
       token,
       newUser,
       id,
-      changeInfoHandler
+      changeInfoHandler,
     } = this.props;
     if (newUser) {
       onForm(formValues, userId, token);
@@ -58,10 +45,9 @@ class Form extends React.Component {
     );
   };
 
-  render() {
-    const { handleSubmit, submitting, loading, error } = this.props;
-    let errorMessage = null;
-    let form = (
+  renderForm = () => {
+    const { handleSubmit, submitting, loading } = this.props;
+    return loading ? null : (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <Field
           name="username"
@@ -84,45 +70,45 @@ class Form extends React.Component {
         </div>
       </form>
     );
+  };
 
-    if (loading) {
-      form = null;
-    }
+  renderErrorMessage = () => {
+    const { error } = this.props;
 
-    if (error) {
-      errorMessage = <p>{error.message}</p>;
-    }
+    return error ? <p>{error.message}</p> : null;
+  };
 
+  render() {
     return (
       <div>
-        {errorMessage}
-        {form}
+        {this.renderErrorMessage()}
+        {this.renderForm()}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     error: state.userData.error,
     loading: state.userData.loading,
     token: state.auth.token,
     userId: state.auth.userId,
-    userData: state.userData.userData
+    userData: state.userData.userData,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onForm: (formValues, userId, token) =>
       dispatch(actions.addUserData(formValues, userId, token)),
     onFormUpdate: (formValues, id, userId, token) =>
-      dispatch(actions.updateUserData(formValues, id, userId, token))
+      dispatch(actions.updateUserData(formValues, id, userId, token)),
   };
 };
 
 Form = connect(mapStateToProps, mapDispatchToProps)(Form);
 
 export default reduxForm({
-  form: "form"
+  form: "form",
 })(Form);
