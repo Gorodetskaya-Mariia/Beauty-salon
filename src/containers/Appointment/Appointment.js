@@ -3,25 +3,8 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/";
 import Spinner from "../../components/Spinner/Spinner";
-
-const defaultServices = ["Color", "Haircutting", "Makeup", "Waxing"];
-const time = [
-  "10AM to 11AM",
-  "11AM to 12PM",
-  "12PM to 13PM",
-  "13PM to 14PM",
-  "15PM to 16PM",
-  "16PM to 17PM",
-  "17PM to 18PM",
-];
-
-const required = (value) =>
-  value || typeof value === "number" ? undefined : "Required";
-
-const alphaNumeric = (value) =>
-  value && /[^a-zA-Z0-9 ]/i.test(value)
-    ? "Only alphanumeric characters"
-    : undefined;
+import { defaultServices, time } from "../../constants/constants";
+import { required, alphaNumeric } from "../../utilities/validation";
 
 class Appointment extends React.Component {
   state = {
@@ -72,10 +55,12 @@ class Appointment extends React.Component {
     );
   };
 
-  render() {
+  renderForm = () => {
     const { handleSubmit, loading } = this.props;
     const { services } = this.state;
-    let form = (
+    return loading ? (
+      <Spinner />
+    ) : (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <Field
           name="service"
@@ -107,12 +92,10 @@ class Appointment extends React.Component {
         <button className="form__button">Submit</button>
       </form>
     );
+  };
 
-    if (loading) {
-      form = <Spinner />;
-    }
-
-    return <div className="container--form">{form}</div>;
+  render() {
+    return <div className="container--form">{this.renderForm()}</div>;
   }
 }
 

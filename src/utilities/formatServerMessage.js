@@ -3,5 +3,5 @@ export const formatServerMessage = (string) => {
 			.replace(/_/g, ' ')
 			.toLowerCase()
 			.split('')
-			.reduce((str, char, index, array)=> index === 0 ? str + char.toUpperCase() : str + char, '');
+			.reduce((str, char, index)=> index === 0 ? str + char.toUpperCase() : str + char, '');
 };

@@ -16,7 +16,7 @@ class Account extends React.Component {
     onFetchUserData(token, userId);
   }
 
-  onDeleteHandler = e => {
+  onDeleteHandler = (e) => {
     const { onFetchAppointments, token, userId } = this.props;
     const id = e.target.getAttribute("data-id");
 
@@ -24,13 +24,13 @@ class Account extends React.Component {
       .delete(
         `https://react-beauty-salon-cacbe.firebaseio.com/appointments/${id}.json?auth=${token}`
       )
-      .then(res => {
+      .then((res) => {
         onFetchAppointments(token, userId);
       })
-      .catch(err => console.warn(err));
+      .catch((err) => console.warn(err));
   };
 
-  onChangeDataHandler = e => {
+  onChangeDataHandler = (e) => {
     const id = e.target.getAttribute("data-id");
     this.setState({ onChange: true });
     this.setState({ id: id });
@@ -40,46 +40,48 @@ class Account extends React.Component {
     this.setState({ onChange: false });
   };
 
-  render() {
-    let appointmentsList = [];
-    let userDataList = [];
-    let form = null;
-    let content = <Spinner />;
-    const { appointments, userData, loading } = this.props;
+  renderAppointmentsList = () => {
+    const { appointments } = this.props;
+
+    return appointments && appointments.length ? (
+      appointments.map((appointment) => (
+        <div
+          key={appointment.id}
+          className="account__card-row d-flex space-between align-items-center"
+        >
+          <p>{appointment.service}</p>
+          <p>{appointment.time}</p>
+          <Button
+            type="danger"
+            data-id={appointment.id}
+            onClick={this.onDeleteHandler}
+          >
+            Delete
+          </Button>
+        </div>
+      ))
+    ) : (
+      <p>You haven't booked any services</p>
+    );
+  };
+
+  renderForm = () => {
     const { onChange, id } = this.state;
 
-    if (onChange) {
-      form = (
-        <Form
-          newUser={false}
-          id={id}
-          changeInfoHandler={this.changeInfoHandler}
-        />
-      );
-    }
+    return onChange ? (
+      <Form
+        newUser={false}
+        id={id}
+        changeInfoHandler={this.changeInfoHandler}
+      />
+    ) : null;
+  };
 
-    appointmentsList =
-      appointments && appointments.length
-        ? appointments.map(appointment => (
-      <div
-        key={appointment.id}
-        className="account__card-row d-flex space-between align-items-center"
-      >
-        <p>{appointment.service}</p>
-        <p>{appointment.time}</p>
-        <Button
-          type="danger"
-          data-id={appointment.id}
-          onClick={this.onDeleteHandler}
-        >
-          Delete
-        </Button>
-      </div>
-    ))
-    : <p>You haven't booked any services</p>;
+  renderUserDataList = () => {
+    const { userData } = this.props;
 
-    if (userData.length) {
-      userDataList = userData.map(item => (
+    return userData.length ? (
+      userData.map((item) => (
         <div
           key={item.id ? item.id : null}
           className="account__card-row d-flex flex-column"
@@ -99,58 +101,62 @@ class Account extends React.Component {
           >
             Change data
           </Button>
-          {form}
+          {this.renderForm()}
         </div>
-      ));
-    } else {
-      userDataList = (
+      ))
+    ) : (
+      <div>
         <div>
-          <div>
-            Please fill the form bellow. The information requires for booking an
-            appointment.
-          </div>
-          <Form newUser={false} />
+          Please fill the form bellow. The information requires for booking an
+          appointment.
         </div>
-      );
-    }
+        <Form newUser={false} />
+      </div>
+    );
+  };
 
-    if (!loading) {
-      content = (
-        <div className="account__card-wrapper d-flex justify-center">
-          <Card title="Booked services" bordered={true} className="account__card">
-            {appointmentsList}
-          </Card>
-          <Card
-            title="Personal information"
-            bordered={true}
-            className="account__card"
-          >
-            {userDataList}
-          </Card>
-        </div>
-      );
-    }
+  renderContent = () => {
+    const { loading } = this.props;
 
-    return <div className="wrapper">{content}</div>;
+    return loading ? (
+      <Spinner />
+    ) : (
+      <div className="account__card-wrapper d-flex justify-center">
+        <Card title="Booked services" bordered={true} className="account__card">
+          {this.renderAppointmentsList()}
+        </Card>
+        <Card
+          title="Personal information"
+          bordered={true}
+          className="account__card"
+        >
+          {this.renderUserDataList()}
+        </Card>
+      </div>
+    );
+  };
+
+  render() {
+    return <div className="wrapper">{this.renderContent()}</div>;
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     loading: state.account.loading,
     appointments: state.account.appointments,
     token: state.auth.token,
     userId: state.auth.userId,
-    userData: state.userData.userData
+    userData: state.userData.userData,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onFetchAppointments: (token, userId) =>
       dispatch(actions.fetchAppointments(token, userId)),
     onFetchUserData: (token, userId) =>
-      dispatch(actions.fetchUserData(token, userId))
+      dispatch(actions.fetchUserData(token, userId)),
   };
 };
 

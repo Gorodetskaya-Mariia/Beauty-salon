@@ -4,12 +4,13 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 import ServicesCard from "../../components/Card/ServicesCard";
 import Spinner from "../../components/Spinner/Spinner";
+import { Routes } from "../../constants/routes";
 import "./Services.css";
 
 class Services extends React.Component {
   state = {
     filteredServices: [],
-    forWhom: ""
+    forWhom: "",
   };
 
   componentDidMount() {
@@ -25,52 +26,59 @@ class Services extends React.Component {
     }
   }
 
-  selectHandler(item) {
+  selectHandler = (item) => {
     const { forWhom } = this.state;
     const { services, onInitSelectedServices } = this.props;
 
-    forWhom === "/services-for-women"
+    forWhom === Routes.SERVICES_FOR_WOMEN
       ? onInitSelectedServices(services.women[item], forWhom)
       : onInitSelectedServices(services.men[item], forWhom);
-  }
+  };
 
-  afterSetStateFinished(arr) {
+  afterSetStateFinished = (arr) => {
     const { forWhom } = this.state;
 
-    forWhom === "/services-for-women"
+    forWhom === Routes.SERVICES_FOR_WOMEN
       ? this.setState({ filteredServices: Object.keys(arr.women) })
       : this.setState({ filteredServices: Object.keys(arr.men) });
-  }
+  };
 
-  renderList() {
+  renderServicesList = () => {
     const { filteredServices, forWhom } = this.state;
-    const { loading } = this.props;
-    let servicesList = filteredServices.map(item => (
-      <Link
-        to={`${forWhom}/${item.toLowerCase()}`}
-        className="services__card"
-        key={item}
-        onClick={() => this.selectHandler(item)}
-      >
-        <ServicesCard service={item} forWhom={forWhom} />
-      </Link>
-    ));
 
-    let content = (
-      <div className="d-flex space-between fadeIn">{servicesList}</div>
+    return filteredServices ? (
+      filteredServices.map((item) => (
+        <Link
+          to={`${forWhom}/${item.toLowerCase()}`}
+          className="services__card"
+          key={item}
+          onClick={() => this.selectHandler(item)}
+        >
+          <ServicesCard service={item} forWhom={forWhom} />
+        </Link>
+      ))
+    ) : (
+      <p>No Services</p>
     );
+  };
 
-    if (loading) {
-      content = <Spinner />;
-    }
-    return content;
-  }
+  renderContent = () => {
+    const { loading } = this.props;
+
+    return loading ? (
+      <Spinner />
+    ) : (
+      <div className="d-flex space-between fadeIn">
+        {this.renderServicesList()}
+      </div>
+    );
+  };
 
   render() {
-    const { forWhom, filteredServices } = this.state;
+    const { forWhom } = this.state;
     let src = "";
     let classAdd = "";
-    if (forWhom === "/services-for-women") {
+    if (forWhom === Routes.SERVICES_FOR_WOMEN) {
       src = "images/services-women.png";
       classAdd = "";
     } else {
@@ -87,28 +95,27 @@ class Services extends React.Component {
             src={src}
           ></img>
         </div>
-        <div className="services__container">
-          {filteredServices && this.renderList()}
-        </div>
+        <div className="services__container">{this.renderContent()}</div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     services: state.services.services,
     error: state.services.error,
     loading: state.services.loading,
     isAuthenticated: state.auth.token !== null,
-    selectedService: state.selectedService
+    selectedService: state.selectedService,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onInitServices: () => dispatch(actions.initServices()),
-    onInitSelectedServices: (service, forWhom) => dispatch(actions.setSelectedService(service, forWhom))
+    onInitSelectedServices: (service, forWhom) =>
+      dispatch(actions.setSelectedService(service, forWhom)),
   };
 };
 

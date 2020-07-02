@@ -21,7 +21,7 @@ class ServiceDetail extends React.Component {
     this.props.history.push(Routes.SIGNIN);
   };
 
-  renderList() {
+  renderList = () => {
     const { selectedService } = this.props.services;
     const { isAuthenticated } = this.props;
     let filteredArray = Object.keys(selectedService);
