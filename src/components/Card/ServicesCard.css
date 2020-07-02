@@ -1,5 +1,5 @@
 .services__card {
-  margin: 50px 0;
+  margin: 40px 0;
   width: 150px;
 }
 
@@ -16,10 +16,21 @@
   .services__card {
     width: 130px;
     margin-top: 0;
-    margin-right: 20px;
   }
 
   .services__card:nth-of-type(2n) {
     margin-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .services__card {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 560px) {
+  .services__card {
+    margin-bottom: 0;
   }
 }

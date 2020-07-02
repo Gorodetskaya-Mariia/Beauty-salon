@@ -21,7 +21,7 @@ class Home extends React.Component {
           </h2>
           {isAuthenticated ? (
             <Link to="/appointment">
-              <Button type="primary" size={"large"}>
+              <Button type="primary" size={"large"} className="button-main">
                 Book an appointment
               </Button>
             </Link>
@@ -29,6 +29,7 @@ class Home extends React.Component {
             <Button
               type="primary"
               size={"large"}
+              className="button-main"
               onClick={this.onRedirectHandler}
             >
               Sign up for booking

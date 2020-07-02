@@ -28,7 +28,7 @@
 .nav__item--submenu:hover .nav__submenu {
   visibility: visible;
   height: auto;
-  z-index: 0;
+  z-index: 1;
   pointer-events: auto;
 }
 
@@ -50,4 +50,18 @@
 .nav__item > a:hover {
   border-bottom: 2px solid #fc9898;
   color: #fc9898;
+}
+
+@media (max-width: 560px) {
+  .nav__submenu {
+    top: 75px;
+  }
+
+  .nav__item--submenu {
+    position: static;
+  }
+
+  .nav__item {
+    margin-right: 10px;
+  }
 }

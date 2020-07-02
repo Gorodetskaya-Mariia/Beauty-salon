@@ -1,14 +1,21 @@
 .services__container {
+  margin-top: auto;
   transition: all 0.3s ease-in;
 }
 
 .services__image {
   width: 200px;
   height: 215px;
-  margin: 30px;
 }
 
 .services__image--men {
   width: 180px;
   height: 248px;
+}
+
+@media (max-width: 560px) {
+  .services__list {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
 }

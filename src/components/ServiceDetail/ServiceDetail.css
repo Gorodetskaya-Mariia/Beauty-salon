@@ -44,6 +44,7 @@
 
 .service__info {
   font-size: 15px;
+  padding-left: 10px;
 }
 
 .service__info span {
@@ -63,11 +64,6 @@
 }
 
 @media (max-width: 1100px) {
-  .wrapper .services__container {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
   .service__item {
     width: 80%;
   }

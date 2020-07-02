@@ -79,7 +79,7 @@ class ServiceDetail extends React.Component {
           <div className="service__info">
             <Icon type="exclamation-circle" className="service__icon" />
             Booking is available only for authenticated customers. If you want
-            to book an appointment please
+            to book an appointment 
             <span onClick={this.onSignupHandler}> click for sign in.</span>
           </div>
         )}

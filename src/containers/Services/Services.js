@@ -68,7 +68,7 @@ class Services extends React.Component {
     return loading ? (
       <Spinner />
     ) : (
-      <div className="d-flex space-between fadeIn">
+      <div className="d-flex space-between fadeIn services__list">
         {this.renderServicesList()}
       </div>
     );
@@ -87,7 +87,7 @@ class Services extends React.Component {
     }
 
     return (
-      <div className="wrapper">
+      <div className="wrapper d-flex flex-column h-100">
         <div className="w-100 d-flex justify-center">
           <img
             className={`services__image ${classAdd}`}

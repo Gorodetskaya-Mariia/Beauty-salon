@@ -103,3 +103,9 @@ form {
     padding-bottom: 60px;
   }
 }
+
+@media (max-width: 560px) {
+  .container--form {
+    padding-top: 30px;
+  }
+}
