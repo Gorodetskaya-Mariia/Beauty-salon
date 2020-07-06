@@ -6,7 +6,8 @@ import {
   FETCH_APPOINTMENTS_FAIL,
   CREATE_APPOINTMENT_START,
   CREATE_APPOINTMENT_SUCCESS,
-  CREATE_APPOINTMENT_FAIL
+  CREATE_APPOINTMENT_FAIL,
+  CLEAR_APPOINTMENTS,
 } from "./types";
 
 export const fetchAppointmentsStart = () => {
@@ -28,7 +29,6 @@ export const fetchAppointmentsFail = error => {
 };
 
 export const fetchAppointments = (token, userId) => async dispatch => {
-  console.log('fetchAppointments');
   dispatch(fetchAppointmentsStart());
   const queryParams =
     "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
@@ -100,4 +100,10 @@ export const createAppointment = (
     .catch(error => {
       dispatch(createAppointmentFail(error));
     });
+};
+
+export const clearAppointments = () => {
+  return {
+    type: CLEAR_APPOINTMENTS,
+  };
 };

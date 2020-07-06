@@ -4,7 +4,7 @@ import { updateObject } from "../../utilities/updateObject";
 const initialState = {
   userData: [],
   loading: false,
-  update: true
+  update: true,
 };
 
 const addUserDataStart = (state, action) => {
@@ -14,11 +14,11 @@ const addUserDataStart = (state, action) => {
 const addUserDataSuccess = (state, action) => {
   const newUserData = updateObject(action.userData, {
     id: action.userDataId,
-    userId: action.userId
+    userId: action.userId,
   });
   return updateObject(state, {
     loading: false,
-    userData: state.userData.concat(newUserData)
+    userData: state.userData.concat(newUserData),
   });
 };
 
@@ -29,7 +29,7 @@ const addUserDataFail = (state, action) => {
 const fetchUserDataSuccess = (state, action) => {
   return updateObject(state, {
     userData: action.userData,
-    update: true
+    update: true,
   });
 };
 
@@ -40,11 +40,11 @@ const fetchUserDataFail = (state, action) => {
 const updateUserDataSuccess = (state, action) => {
   const newUserData = updateObject(action.userData, {
     id: action.userDataId,
-    userId: action.userId
+    userId: action.userId,
   });
   return updateObject(state, {
     loading: false,
-    userData: state.userData.concat(newUserData)
+    userData: state.userData.concat(newUserData),
   });
 };
 
@@ -72,8 +72,8 @@ const reducer = (state = initialState, action) => {
       return updateUserDataSuccess(state, action);
     case actionTypes.UPDATE_USER_DATA_FAIL:
       return updateUserDataFail(state, action);
-      case actionTypes.CLEAR_USER_DATA:
-        return clearUserData(state, action);
+    case actionTypes.CLEAR_USER_DATA:
+      return clearUserData(state, action);
     default:
       return state;
   }

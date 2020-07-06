@@ -3,7 +3,7 @@ import { updateObject } from "../../utilities/updateObject";
 
 const initialState = {
   appointments: [],
-  loading: false
+  loading: false,
 };
 
 const fetchAppointmentsStart = (state, action) => {
@@ -13,13 +13,13 @@ const fetchAppointmentsStart = (state, action) => {
 const fetchAppointmentsSuccess = (state, action) => {
   return updateObject(state, {
     appointments: action.appointments,
-    loading: false
+    loading: false,
   });
 };
 
 const fetchAppointmentsFail = (state, action) => {
   return updateObject(state, {
-    loading: false
+    loading: false,
   });
 };
 
@@ -30,16 +30,20 @@ const createAppointmentStart = (state, action) => {
 const createAppointmentSuccess = (state, action) => {
   const newAppointment = updateObject(action.appointmentData, {
     id: action.appointmentId,
-    userId: action.userId
+    userId: action.userId,
   });
   return updateObject(state, {
     loading: false,
-    appointments: state.appointments.concat(newAppointment)
+    appointments: state.appointments.concat(newAppointment),
   });
 };
 
 const createAppointmentFail = (state, action) => {
   return updateObject(state, { loading: false });
+};
+
+const clearAppointments = (state, action) => {
+  return updateObject(state, initialState);
 };
 
 const reducer = (state = initialState, action) => {
@@ -56,6 +60,8 @@ const reducer = (state = initialState, action) => {
       return fetchAppointmentsSuccess(state, action);
     case actionTypes.FETCH_APPOINTMENTS_FAIL:
       return fetchAppointmentsFail(state, action);
+    case actionTypes.CLEAR_APPOINTMENTS:
+      return clearAppointments(state, action);
     default:
       return state;
   }
