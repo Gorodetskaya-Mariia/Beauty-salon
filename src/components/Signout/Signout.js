@@ -6,7 +6,9 @@ import { Routes } from "../../constants/routes";
 
 class Signout extends React.Component {
   componentDidMount() {
-    this.props.onLogout();
+    const { onLogout, clearUserData } = this.props;
+    onLogout();
+    clearUserData();
   }
 
   render() {
@@ -17,6 +19,7 @@ class Signout extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogout: () => dispatch(actions.logout()),
+    clearUserData: () => dispatch(actions.clearUserData()),
   };
 };
 export default connect(null, mapDispatchToProps)(Signout);

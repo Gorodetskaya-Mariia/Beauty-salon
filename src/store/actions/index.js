@@ -4,4 +4,4 @@ export { initServices, setSelectedService, setServiceForBooking } from "./servic
 
 export { fetchAppointments, createAppointment } from "./account";
 
-export { addUserData, fetchUserData, updateUserData } from "./userData";
+export { addUserData, fetchUserData, updateUserData, clearUserData } from "./userData";

@@ -28,6 +28,7 @@ export const fetchAppointmentsFail = error => {
 };
 
 export const fetchAppointments = (token, userId) => async dispatch => {
+  console.log('fetchAppointments');
   dispatch(fetchAppointmentsStart());
   const queryParams =
     "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';

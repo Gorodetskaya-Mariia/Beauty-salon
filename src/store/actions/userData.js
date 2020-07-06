@@ -7,7 +7,8 @@ import {
   FETCH_USER_DATA_SUCCESS,
   FETCH_USER_DATA_FAIL,
   UPDATE_USER_DATA_SUCCESS,
-  UPDATE_USER_DATA_FAIL
+  UPDATE_USER_DATA_FAIL,
+  CLEAR_USER_DATA,
 } from "./types";
 
 export const addUserDataStart = () => {
@@ -130,4 +131,10 @@ export const updateUserData = (
     .catch(error => {
       dispatch(updateUserDataFail(error));
     });
+};
+
+export const clearUserData = () => {
+  return {
+    type: CLEAR_USER_DATA,
+  };
 };

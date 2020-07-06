@@ -52,6 +52,10 @@ const updateUserDataFail = (state, action) => {
   return updateObject(state, { loading: false });
 };
 
+const clearUserData = (state, action) => {
+  return updateObject(state, initialState);
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_USER_DATA_START:
@@ -68,6 +72,8 @@ const reducer = (state = initialState, action) => {
       return updateUserDataSuccess(state, action);
     case actionTypes.UPDATE_USER_DATA_FAIL:
       return updateUserDataFail(state, action);
+      case actionTypes.CLEAR_USER_DATA:
+        return clearUserData(state, action);
     default:
       return state;
   }
