@@ -1,0 +1,38 @@
+.service__item {
+  font-size: 15px;
+  width: 50%;
+  margin: 0 auto 15px auto;
+}
+
+.service__item button {
+  width: 75px;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.service__name {
+  width: 50%;
+  font-weight: 700;
+  margin: 0 30px 0 0;
+}
+
+.service__price {
+  width: 20%;
+  margin-bottom: 0;
+}
+
+.service__buttons--book {
+  margin-right: 10px;
+}
+
+@media (max-width: 1100px) {
+  .service__item {
+    width: 80%;
+  }
+}
+
+@media (max-width: 560px) {
+  .service__item {
+    width: 100%;
+  }
+}

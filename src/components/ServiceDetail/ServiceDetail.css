@@ -11,37 +11,6 @@
   font-size: 17px;
 }
 
-.service__list {
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.service__item {
-  font-size: 15px;
-  width: 50%;
-  margin: 0 auto 15px auto;
-}
-
-.service__name {
-  width: 50%;
-  font-weight: 700;
-  margin: 0 30px 0 0;
-}
-
-.service__price {
-  width: 20%;
-  margin-bottom: 0;
-}
-
-.service__buttons--book {
-  margin-right: 10px;
-}
-
-.service__buttons {
-  margin-left: auto;
-}
-
 .service__info {
   font-size: 15px;
   padding-left: 10px;
@@ -61,16 +30,4 @@
 
 .service__icon {
   margin-right: 10px;
-}
-
-@media (max-width: 1100px) {
-  .service__item {
-    width: 80%;
-  }
-}
-
-@media (max-width: 560px) {
-  .service__item {
-    width: 100%;
-  }
 }

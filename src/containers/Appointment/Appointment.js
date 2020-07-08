@@ -2,6 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/";
+import { Routes } from "../../constants/routes";
 import Spinner from "../../components/Spinner/Spinner";
 import { defaultServices, time } from "../../constants/constants";
 import { required, alphaNumeric } from "../../utilities/validation";
@@ -33,7 +34,7 @@ class Appointment extends React.Component {
   onSubmit = (formValues) => {
     const { onCreateAppointment, userId, token } = this.props;
     onCreateAppointment(formValues, userId, token);
-    this.props.history.push("/account");
+    this.props.history.push(Routes.ACCOUNT);
   };
 
   renderSelect = ({ input, label, options, meta: { touched, error } }) => {
