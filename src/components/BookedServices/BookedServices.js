@@ -7,8 +7,8 @@ import { Button } from "antd";
 
 class BookedServices extends React.Component {
   componentDidMount() {
-    const { onFetchAppointments, token, userId } = this.props;
-    onFetchAppointments(token, userId);
+    const { onFetchAppointments, token, userId, appointments } = this.props;
+    !appointments.length && onFetchAppointments(token, userId);
   }
 
   onDeleteHandler = (e) => {
@@ -41,7 +41,7 @@ class BookedServices extends React.Component {
             data-id={appointment.id}
             onClick={this.onDeleteHandler}
           >
-            Delete
+            Cancel
           </Button>
         </div>
       ))
