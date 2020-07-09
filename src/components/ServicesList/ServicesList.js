@@ -1,22 +1,24 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 import * as actions from "../../store/actions";
 import ServicesItem from "../ServicesItem/ServicesItem";
 import Spinner from "../Spinner/Spinner";
+import { Modal } from "antd";
 import "./ServiceList.css";
 
 class ServicesList extends React.Component {
+  state = { showModal: false, serviceToCancel: {} };
+
   componentDidMount() {
     const {
       onFetchAppointments,
       token,
       userId,
       isAuthenticated,
-      appointments,
     } = this.props;
 
     isAuthenticated &&
-      !appointments.length &&
       onFetchAppointments(token, userId);
   }
 
@@ -43,8 +45,36 @@ class ServicesList extends React.Component {
     );
   }
 
+  OkHandle = (id) => {
+    const { onFetchAppointments, token, userId } = this.props;
+
+    axios
+      .delete(
+        `https://react-beauty-salon-cacbe.firebaseio.com/appointments/${id}.json?auth=${token}`
+      )
+      .then(() => {
+        onFetchAppointments(token, userId);
+        this.setState({ showModal: false, serviceToCancel: {} });
+      })
+      .catch((err) => console.warn(err));
+  };
+
+  CancelHandle = () => {
+    this.setState({ showModal: false, serviceToCancel: {} });
+  };
+
+  onCancelHandler = (item) => {
+    const { appointments } = this.props;
+
+    for(let appointment of appointments){
+      if(appointment.service === item) 
+      this.setState({ showModal: true, serviceToCancel: appointment });
+    }    
+  };
+
   renderServices() {
     const { isAuthenticated } = this.props;
+    const { showModal, serviceToCancel } = this.state;
 
     return (
       <div className="service__list d-flex flex-column">
@@ -56,13 +86,23 @@ class ServicesList extends React.Component {
         {isAuthenticated &&
           this.bookedServices &&
           this.bookedServices.map((item) => (
-            <ServicesItem item={item} booked={true} renderButtons={true} />
+            <ServicesItem item={item} booked={true} renderButtons={true} onCancelHandler={this.onCancelHandler}/>
           ))}
         {!isAuthenticated &&
           this.allServices &&
           this.allServices.map((item) => (
             <ServicesItem item={item} renderButtons={false} />
           ))}
+          {showModal && (
+          <Modal
+            title=""
+            visible={true}
+            onOk={() => this.OkHandle(serviceToCancel.id)}
+            onCancel={this.CancelHandle}
+          >
+            <p>{`Are you sure to cancel "${serviceToCancel.service}" at ${serviceToCancel.time}`}</p>
+          </Modal>
+        )}
       </div>
     );
   }

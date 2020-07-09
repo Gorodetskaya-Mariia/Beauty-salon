@@ -13,12 +13,8 @@ class ServicesItem extends React.Component {
     this.props.history.push(Routes.APPOINTMENT);
   };
 
-  onCancelHandler = () => {
-    this.props.history.push(Routes.ACCOUNT);
-  };
-
   render() {
-    const { item, booked, renderButtons } = this.props;
+    const { item, booked, renderButtons, onCancelHandler } = this.props;
     const { selectedService } = this.props.services;
 
     return (
@@ -27,7 +23,7 @@ class ServicesItem extends React.Component {
         <p className="service__price">{`from $${selectedService[item].price}`}</p>
         {renderButtons &&
           (booked ? (
-            <Button type="danger" onClick={this.onCancelHandler}>
+            <Button type="danger" onClick={() => onCancelHandler(item)}>
               Cancel
             </Button>
           ) : (
@@ -48,6 +44,7 @@ const mapStateToProps = (state) => {
   return {
     services: state.services,
     isAuthenticated: state.auth.token !== null,
+    appointments: state.account.appointments,
   };
 };
 
