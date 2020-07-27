@@ -1,4 +1,5 @@
 import axios from "axios";
+import { signInUrl, signUpUrl } from "../../constants/urls";
 import {
   AUTH_START,
   AUTH_SUCCESS,
@@ -56,9 +57,7 @@ export const auth = (email, password, isSignup) => async (dispatch) => {
     password: password,
     returnSecureToken: true,
   };
-  let url = isSignup
-    ? "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCsVdWx8tfV7MlsjbEAg3Fk6zdBkrd2wKI"
-    : "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCsVdWx8tfV7MlsjbEAg3Fk6zdBkrd2wKI";
+  let url = isSignup ? signUpUrl : signInUrl;
 
   axios
     .post(url, authData)

@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import * as actions from "../../store/actions";
+import { deleteAppointmentUrl } from "../../constants/urls";
 import Spinner from "../../components/Spinner/Spinner";
 import { Button, Modal } from "antd";
 
@@ -18,7 +19,7 @@ class BookedServices extends React.Component {
 
     axios
       .delete(
-        `https://react-beauty-salon-cacbe.firebaseio.com/appointments/${id}.json?auth=${token}`
+        `${deleteAppointmentUrl}${id}.json?auth=${token}`
       )
       .then(() => {
         onFetchAppointments(token, userId);

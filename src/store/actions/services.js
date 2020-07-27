@@ -1,4 +1,5 @@
 import axios from "axios";
+import { fetchServicesUrl } from "../../constants/urls";
 import {
   FETCH_SERVICES_FAILED,
   FETCH_SERVICES_START,
@@ -9,20 +10,20 @@ import {
 
 export const servicesStart = () => {
   return {
-    type: FETCH_SERVICES_START
+    type: FETCH_SERVICES_START,
   };
 };
 
-export const setServices = services => {
+export const setServices = (services) => {
   return {
     type: SET_SERVICES,
-    services: services
+    services: services,
   };
 };
 
 export const fetchServicesFailed = () => {
   return {
-    type: FETCH_SERVICES_FAILED
+    type: FETCH_SERVICES_FAILED,
   };
 };
 
@@ -30,7 +31,7 @@ export const setSelectedService = (service, forWhom) => {
   return {
     type: SET_SELECTED_SERVICE,
     setSelectedService: service,
-    forWhom: forWhom
+    forWhom: forWhom,
   };
 };
 
@@ -41,16 +42,16 @@ export const setServiceForBooking = (service) => {
   };
 };
 
-export const initServices = () => dispatch => {
+export const initServices = () => (dispatch) => {
   dispatch(servicesStart());
   axios
-    .get("https://react-beauty-salon-cacbe.firebaseio.com/servicess.json")
-    .then(response => JSON.stringify(response.data))
-    .then(data => {
+    .get(fetchServicesUrl)
+    .then((response) => JSON.stringify(response.data))
+    .then((data) => {
       const result = JSON.parse(data);
       dispatch(setServices(result));
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
       dispatch(fetchServicesFailed());
     });

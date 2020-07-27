@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import { deleteAppointmentUrl } from "../../constants/urls";
 import * as actions from "../../store/actions";
 import ServicesItem from "../ServicesItem/ServicesItem";
 import Spinner from "../Spinner/Spinner";
@@ -50,7 +51,7 @@ class ServicesList extends React.Component {
 
     axios
       .delete(
-        `https://react-beauty-salon-cacbe.firebaseio.com/appointments/${id}.json?auth=${token}`
+        `${deleteAppointmentUrl}${id}.json?auth=${token}`
       )
       .then(() => {
         onFetchAppointments(token, userId);

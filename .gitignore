@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.firebaserc
+firebase.json
+package-lock.json
+
+/src/constants/urls.js
