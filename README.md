@@ -12,10 +12,6 @@ The application contains several pages: "Home", "Services", "Login" - a page for
 	* Responsive Web Design approach
 	* Test Runner: Jest, Testing Utilities: Enzyme
 
-## You can use commands bellow to run project:
-	* npm install
-	* npm start
-
 ## For testing:
 	* npm install --save jest enzyme-adapter-react-16 react-test-renderer
   * documentation - https://jestjs.io/docs/en
